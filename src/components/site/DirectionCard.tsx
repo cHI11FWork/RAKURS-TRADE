@@ -9,15 +9,23 @@ const DEFAULT_DIRECTION_IMAGES: Record<string, string> = {
   crosshair: "/images/direction-defense.jpg",
 };
 
-export function DirectionCard({ direction }: { direction: DirectionWithItems }) {
+const TILT_CLASSES = ["rotate-[-1.5deg]", "rotate-0", "rotate-[1.5deg]"];
+
+export function DirectionCard({
+  direction,
+  tiltIndex = 1,
+}: {
+  direction: DirectionWithItems;
+  tiltIndex?: number;
+}) {
   const imageSrc = direction.image_url ?? DEFAULT_DIRECTION_IMAGES[direction.icon] ?? null;
   const glowId = `bolt-glow-${direction.id}`;
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border border-ink-border bg-ink-card transition-transform duration-300 hover:-translate-y-1.5 ${
-        direction.enable_lightning_effect ? "lightning-card" : ""
-      }`}
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border border-ink-border bg-ink-card transition-transform duration-300 ease-out hover:-translate-y-2 hover:rotate-0 hover:scale-[1.015] ${
+        TILT_CLASSES[tiltIndex % 3]
+      } ${direction.enable_lightning_effect ? "lightning-card" : ""}`}
       tabIndex={direction.enable_lightning_effect ? 0 : undefined}
     >
       <div className="relative h-40 overflow-hidden bg-gradient-to-br from-ink-soft to-black">

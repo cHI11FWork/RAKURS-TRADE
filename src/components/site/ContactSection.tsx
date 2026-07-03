@@ -2,6 +2,7 @@ import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
 import type { SiteSettings } from "@/lib/supabase/types";
 import { LinkedinIcon } from "@/lib/icons";
 import { ContactForm } from "./ContactForm";
+import { Reveal } from "./Reveal";
 
 export function ContactSection({ settings }: { settings: SiteSettings | null }) {
   if (!settings) return null;
@@ -9,6 +10,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
   return (
     <section id="contacts" className="bg-ink-soft py-20 lg:py-28">
       <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+        <Reveal>
         <div>
           <h2 className="font-heading text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl">
             Контакти
@@ -71,8 +73,10 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
             )}
           </div>
         </div>
+        </Reveal>
 
-        <div className="rounded-2xl border border-ink-border bg-ink-card p-6 sm:p-8">
+        <Reveal delay={120}>
+        <div className="rounded-2xl border border-ink-border bg-ink-card p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_20px_50px_-20px_rgba(245,179,1,0.25)]">
           <h3 className="font-heading text-lg font-bold text-white">Надішліть запит</h3>
           <p className="mt-1 text-sm text-white/55">
             Заповніть форму, і наші спеціалісти зв&apos;яжуться з вами найближчим часом.
@@ -104,6 +108,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
             )}
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );

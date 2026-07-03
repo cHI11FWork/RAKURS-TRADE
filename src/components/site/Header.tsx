@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
@@ -13,10 +13,26 @@ const NAV_LINKS = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [langHint, setLangHint] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink/80 backdrop-blur-md">
-      <div className="container-page flex h-20 items-center justify-between">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b border-white/5 backdrop-blur-md transition-all duration-300 ${
+        scrolled ? "bg-ink/95 shadow-lg shadow-black/30" : "bg-ink/80"
+      }`}
+    >
+      <div
+        className={`container-page flex items-center justify-between transition-[height] duration-300 ${
+          scrolled ? "h-16" : "h-20"
+        }`}
+      >
         <Logo />
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -24,9 +40,10 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-brand"
+              className="group relative text-sm font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-brand"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-brand transition-transform duration-300 ease-out group-hover:scale-x-100" />
             </a>
           ))}
         </nav>
