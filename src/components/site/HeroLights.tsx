@@ -36,8 +36,10 @@ export function HeroLights() {
               height: light.size,
               background: light.color,
               boxShadow: `0 0 ${light.size * 4}px ${light.size}px ${light.color}`,
-              animation: `${light.fast ? "flicker-fast" : "flicker"} ${light.duration}s ease-in-out infinite`,
-              animationDelay: `${light.delay}s`,
+              opacity: 0,
+              animation: `light-power-on 0.6s ease-out ${light.delay}s both, ${
+                light.fast ? "flicker-fast" : "flicker"
+              } ${light.duration}s ease-in-out ${light.delay + 0.6}s infinite`,
               "--flicker-min": light.fast ? 0.1 : 0.25,
               "--flicker-max": 1,
             } as React.CSSProperties

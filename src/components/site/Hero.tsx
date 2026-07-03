@@ -32,7 +32,7 @@ export function Hero({ hero, features }: { hero: HeroType | null; features: Hero
             <Reveal y={18} delay={200}>
               <a
                 href={hero.cta_link}
-                className="group mt-8 inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow-[0_8px_30px_-8px_rgba(245,179,1,0.6)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_12px_36px_-8px_rgba(245,179,1,0.75)]"
+                className="group mt-8 inline-flex items-center gap-2 rounded-none bg-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow-[0_8px_30px_-8px_rgba(245,179,1,0.6)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_12px_36px_-8px_rgba(245,179,1,0.75)]"
               >
                 {hero.cta_text}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

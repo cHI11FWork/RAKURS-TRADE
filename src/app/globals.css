@@ -65,6 +65,33 @@ body {
   }
 }
 
+@keyframes light-power-on {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-power-on {
+  0% {
+    filter: brightness(0.35) saturate(0.5) contrast(0.95);
+  }
+  60% {
+    filter: brightness(0.75) saturate(0.8) contrast(1);
+  }
+  100% {
+    filter: brightness(1) saturate(1) contrast(1);
+  }
+}
+
+.hero-photo {
+  animation: hero-power-on 2.8s cubic-bezier(0.16, 0.8, 0.24, 1) both;
+}
+
 @keyframes drift {
   0% {
     transform: translate3d(0, 0, 0);

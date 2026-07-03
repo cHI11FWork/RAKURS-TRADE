@@ -60,7 +60,7 @@ export function Header() {
               <span className="text-white/50">EN</span>
             </button>
             {langHint && (
-              <div className="absolute right-0 top-8 w-48 rounded-lg border border-ink-border bg-ink-card px-3 py-2 text-xs text-white/70 shadow-xl">
+              <div className="absolute right-0 top-8 w-48 rounded-none border border-ink-border bg-ink-card px-3 py-2 text-xs text-white/70 shadow-xl">
                 Англійська версія скоро з&apos;явиться
               </div>
             )}
@@ -84,7 +84,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-sm font-semibold uppercase tracking-wide text-white/80 hover:bg-white/5 hover:text-brand"
+                className="rounded-none px-3 py-3 text-sm font-semibold uppercase tracking-wide text-white/80 hover:bg-white/5 hover:text-brand"
               >
                 {link.label}
               </a>

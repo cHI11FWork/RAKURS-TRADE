@@ -23,7 +23,7 @@ export function DirectionCard({
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border border-ink-border bg-ink-card transition-transform duration-300 ease-out hover:-translate-y-2 hover:rotate-0 hover:scale-[1.015] ${
+      className={`group relative flex flex-col overflow-hidden rounded-none border border-ink-border bg-ink-card transition-transform duration-300 ease-out hover:-translate-y-2 hover:rotate-0 hover:scale-[1.015] ${
         TILT_CLASSES[tiltIndex % 3]
       } ${direction.enable_lightning_effect ? "lightning-card" : ""}`}
       tabIndex={direction.enable_lightning_effect ? 0 : undefined}
@@ -43,7 +43,7 @@ export function DirectionCard({
         )}
 
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand/15 ring-1 ring-brand/30 backdrop-blur-sm">
+          <div className="flex h-14 w-14 items-center justify-center rounded-none bg-brand/15 ring-1 ring-brand/30 backdrop-blur-sm">
             <AppIcon name={direction.icon} className="h-7 w-7 text-brand" />
           </div>
         </div>

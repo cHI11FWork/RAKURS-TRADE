@@ -44,7 +44,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Telegram"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
               >
                 <Send className="h-5 w-5" />
               </a>
@@ -55,7 +55,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
               >
                 <MessageCircle className="h-5 w-5" />
               </a>
@@ -66,7 +66,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
               >
                 <LinkedinIcon className="h-5 w-5" />
               </a>
@@ -76,7 +76,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
         </Reveal>
 
         <Reveal delay={120}>
-        <div className="rounded-2xl border border-ink-border bg-ink-card p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_20px_50px_-20px_rgba(245,179,1,0.25)]">
+        <div className="rounded-none border border-ink-border bg-ink-card p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_20px_50px_-20px_rgba(245,179,1,0.25)]">
           <h3 className="font-heading text-lg font-bold text-white">Надішліть запит</h3>
           <p className="mt-1 text-sm text-white/55">
             Заповніть форму, і наші спеціалісти зв&apos;яжуться з вами найближчим часом.
@@ -91,7 +91,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
                 href={settings.whatsapp_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-ink-border py-3 text-sm font-bold uppercase tracking-wide text-white/80 transition-colors hover:border-brand hover:text-brand"
+                className="flex flex-1 items-center justify-center gap-2 rounded-none border border-ink-border py-3 text-sm font-bold uppercase tracking-wide text-white/80 transition-colors hover:border-brand hover:text-brand"
               >
                 <MessageCircle className="h-4 w-4" />
                 Написати у WhatsApp
@@ -100,7 +100,7 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
             {settings.phone && (
               <a
                 href={`tel:${settings.phone.replace(/\s/g, "")}`}
-                className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-ink-border py-3 text-sm font-bold uppercase tracking-wide text-white/80 transition-colors hover:border-brand hover:text-brand"
+                className="flex flex-1 items-center justify-center gap-2 rounded-none border border-ink-border py-3 text-sm font-bold uppercase tracking-wide text-white/80 transition-colors hover:border-brand hover:text-brand"
               >
                 <Phone className="h-4 w-4" />
                 Зателефонувати

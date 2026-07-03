@@ -11,13 +11,13 @@ export function HeroScene({ backgroundImageUrl }: { backgroundImageUrl: string |
         alt=""
         fill
         priority
-        className="object-cover opacity-90"
+        className="hero-photo object-cover"
       />
 
       <HeroLights />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/25 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
     </div>
   );
 }
