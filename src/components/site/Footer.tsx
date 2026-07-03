@@ -29,6 +29,18 @@ export function Footer({ settings }: { settings: SiteSettings | null }) {
             {note2}
           </p>
         )}
+
+        <p className="text-xs text-white/30">
+          {dict.site.footer.developedBy}{" "}
+          <a
+            href="https://steck.top"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/50 underline underline-offset-2 transition-colors hover:text-brand"
+          >
+            CTEK.
+          </a>
+        </p>
       </Reveal>
     </footer>
   );

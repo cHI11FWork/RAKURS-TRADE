@@ -41,6 +41,7 @@ const uk = {
     },
     footer: {
       rights: "Всі права захищені.",
+      developedBy: "Розробили сайт",
     },
   },
   admin: {
@@ -229,6 +230,7 @@ const en: typeof uk = {
     },
     footer: {
       rights: "All rights reserved.",
+      developedBy: "Website by",
     },
   },
   admin: {
