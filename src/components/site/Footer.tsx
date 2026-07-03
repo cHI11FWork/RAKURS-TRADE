@@ -30,13 +30,13 @@ export function Footer({ settings }: { settings: SiteSettings | null }) {
           </p>
         )}
 
-        <p className="text-xs text-white/30">
+        <p className="text-xs text-white/25">
           {dict.site.footer.developedBy}{" "}
           <a
             href="https://steck.top"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/50 underline underline-offset-2 transition-colors hover:text-brand"
+            className="font-heading text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-brand"
           >
             CTEK.
           </a>
