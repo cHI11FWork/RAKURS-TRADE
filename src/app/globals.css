@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #f5b301;
+  --color-brand-dark: #c98a00;
+  --color-ink: #0a0b0e;
+  --color-ink-soft: #15171c;
+  --color-ink-card: #1a1c22;
+  --color-ink-border: #2a2d35;
+
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+}
+
+.container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: var(--flicker-max, 1);
+  }
+  50% {
+    opacity: var(--flicker-min, 0.35);
+  }
+}
+
+@keyframes flicker-fast {
+  0%,
+  92%,
+  100% {
+    opacity: var(--flicker-max, 1);
+  }
+  94% {
+    opacity: 0.15;
+  }
+  96% {
+    opacity: var(--flicker-max, 1);
+  }
+  98% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-2%, 1%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes lightning-flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  4%,
+  8% {
+    opacity: 1;
+  }
+  6% {
+    opacity: 0.2;
+  }
+  10% {
+    opacity: 0;
+  }
+}
+
+.lightning-card .lightning-bolt-path {
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(245, 179, 1, 0.9)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.6));
+}
+
+.lightning-card:hover .lightning-bolt-path,
+.lightning-card:focus-within .lightning-bolt-path {
+  animation:
+    bolt-draw 0.45s ease-out forwards,
+    bolt-fade 0.5s ease-in 0.45s forwards;
+}
+
+.lightning-card .lightning-flash {
+  opacity: 0;
+}
+
+.lightning-card:hover .lightning-flash,
+.lightning-card:focus-within .lightning-flash {
+  animation: lightning-flash-once 0.7s ease-out;
+}
+
+@keyframes bolt-draw {
+  from {
+    stroke-dashoffset: 340;
+    opacity: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes bolt-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes lightning-flash-once {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  16% {
+    opacity: 0.05;
+  }
+  24% {
+    opacity: 0.6;
+  }
+  38% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
