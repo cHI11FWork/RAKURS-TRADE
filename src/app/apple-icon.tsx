@@ -13,8 +13,7 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #1a1c22 0%, #08090b 100%)",
-          borderRadius: 40,
+          background: "#0a0b0e",
         }}
       >
         <div
@@ -22,7 +21,7 @@ export default function AppleIcon() {
             display: "flex",
             width: 96,
             height: 96,
-            background: "linear-gradient(160deg, #ffe08a 0%, #f5b301 45%, #c98a00 100%)",
+            background: "#f5b301",
             clipPath:
               "polygon(58% 0%, 22% 58%, 47% 58%, 38% 100%, 82% 38%, 53% 38%)",
           }}
