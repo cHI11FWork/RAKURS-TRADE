@@ -26,11 +26,11 @@ export function About({
       <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
         <Reveal>
           <div>
-            <h2 className="font-heading text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl">
+            <h2 className="break-words font-heading text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl">
               {heading}
             </h2>
-            {paragraph1 && <p className="mt-6 leading-relaxed text-white/70">{paragraph1}</p>}
-            {paragraph2 && <p className="mt-4 leading-relaxed text-white/70">{paragraph2}</p>}
+            {paragraph1 && <p className="mt-6 break-words leading-relaxed text-white/70">{paragraph1}</p>}
+            {paragraph2 && <p className="mt-4 break-words leading-relaxed text-white/70">{paragraph2}</p>}
           </div>
         </Reveal>
 

@@ -15,7 +15,7 @@ const DEFAULT_DIRECTION_IMAGES: Record<string, string> = {
   crosshair: "/images/direction-defense.jpg",
 };
 
-const TILT_CLASSES = ["rotate-[-1.5deg]", "rotate-0", "rotate-[1.5deg]"];
+const TILT_CLASSES = ["lg:rotate-[-1.5deg]", "lg:rotate-0", "lg:rotate-[1.5deg]"];
 
 export function DirectionCard({
   direction,
@@ -70,7 +70,7 @@ export function DirectionCard({
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col px-6 pb-6">
-        <h3 className="font-heading text-lg font-extrabold uppercase tracking-wide text-white">
+        <h3 className="break-words font-heading text-lg font-extrabold uppercase tracking-wide text-white">
           {title}
         </h3>
 

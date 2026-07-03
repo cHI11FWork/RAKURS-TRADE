@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import {
@@ -12,6 +13,8 @@ import {
   ExternalLink,
   LogOut,
   Bell,
+  Menu,
+  X,
 } from "lucide-react";
 import { signOut } from "@/app/admin/actions";
 import { LOCALE_COOKIE, type Locale } from "@/lib/i18n/locale";
@@ -29,6 +32,7 @@ export function Sidebar({
   const pathname = usePathname();
   const router = useRouter();
   const dict = dictionaries[locale];
+  const [open, setOpen] = useState(false);
 
   const NAV = [
     { href: "/admin", label: dict.admin.sidebar.nav.overview, icon: LayoutDashboard, exact: true },
@@ -39,6 +43,10 @@ export function Sidebar({
     { href: "/admin/leads", label: dict.admin.sidebar.nav.leads, icon: Inbox },
   ];
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   function toggleLocale() {
     const next: Locale = locale === "uk" ? "en" : "uk";
     document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; SameSite=Lax`;
@@ -47,7 +55,7 @@ export function Sidebar({
 
   return (
     <aside className="flex w-full shrink-0 flex-col border-b border-ink-border bg-ink-soft lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:overflow-y-auto lg:border-b-0 lg:border-r">
-      <div className="px-5 py-6">
+      <div className="px-5 py-4 lg:py-6">
         <div className="flex items-center justify-between gap-2">
           <p className="font-heading text-sm font-extrabold tracking-wide text-white">
             RAKURS <span className="text-brand">TRADE</span>
@@ -72,57 +80,67 @@ export function Sidebar({
               <span className="text-white/30">|</span>
               <span className={locale === "en" ? "text-brand" : "text-white/50"}>EN</span>
             </button>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className="admin-icon-btn flex h-8 w-8 items-center justify-center text-white lg:hidden"
+              aria-label={dict.admin.common.menuAriaLabel}
+              aria-expanded={open}
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
-        <p className="mt-0.5 text-xs text-white/40">{dict.admin.sidebar.panelLabel}</p>
+        <p className="mt-0.5 text-xs text-white/40 lg:block">{dict.admin.sidebar.panelLabel}</p>
       </div>
 
-      <nav className="flex-1 space-y-1 px-3">
-        {NAV.map((item) => {
-          const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
-          const Icon = item.icon;
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`admin-nav-link group flex items-center justify-between rounded-none px-3 py-2.5 text-sm font-medium ${
-                active ? "is-active bg-brand/15 text-brand" : "text-white/70 hover:bg-white/5 hover:text-white"
-              }`}
-            >
-              <span className="flex items-center gap-2.5">
-                <Icon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_4px_rgba(245,179,1,0.6)]" />
-                {item.label}
-              </span>
-              {item.href === "/admin/leads" && unreadCount > 0 && (
-                <span className="badge-pulse flex h-5 min-w-5 items-center justify-center rounded-none bg-brand px-1 text-[11px] font-bold text-ink">
-                  {unreadCount}
+      <div className={`${open ? "block" : "hidden"} lg:flex lg:flex-1 lg:flex-col`}>
+        <nav className="flex-1 space-y-1 px-3 pb-2">
+          {NAV.map((item) => {
+            const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`admin-nav-link group flex items-center justify-between rounded-none px-3 py-2.5 text-sm font-medium ${
+                  active ? "is-active bg-brand/15 text-brand" : "text-white/70 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <span className="flex items-center gap-2.5">
+                  <Icon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_4px_rgba(245,179,1,0.6)]" />
+                  {item.label}
                 </span>
-              )}
-            </Link>
-          );
-        })}
-      </nav>
+                {item.href === "/admin/leads" && unreadCount > 0 && (
+                  <span className="badge-pulse flex h-5 min-w-5 items-center justify-center rounded-none bg-brand px-1 text-[11px] font-bold text-ink">
+                    {unreadCount}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
 
-      <div className="space-y-1 border-t border-ink-border px-3 py-4">
-        <a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="admin-nav-link group flex items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-white"
-        >
-          <ExternalLink className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          {dict.admin.sidebar.viewSite}
-        </a>
-        <p className="truncate px-3 text-xs text-white/30">{email}</p>
-        <form action={signOut}>
-          <button
-            type="submit"
-            className="admin-nav-link group flex w-full items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-red-400"
+        <div className="space-y-1 border-t border-ink-border px-3 py-4">
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="admin-nav-link group flex items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-white"
           >
-            <LogOut className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-            {dict.admin.sidebar.logout}
-          </button>
-        </form>
+            <ExternalLink className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            {dict.admin.sidebar.viewSite}
+          </a>
+          <p className="truncate px-3 text-xs text-white/30">{email}</p>
+          <form action={signOut}>
+            <button
+              type="submit"
+              className="admin-nav-link group flex w-full items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-red-400"
+            >
+              <LogOut className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              {dict.admin.sidebar.logout}
+            </button>
+          </form>
+        </div>
       </div>
     </aside>
   );

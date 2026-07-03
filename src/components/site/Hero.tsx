@@ -24,7 +24,7 @@ export function Hero({ hero, features }: { hero: HeroType | null; features: Hero
       <div className="container-page">
         <div className="max-w-3xl">
           <Reveal y={18}>
-            <h1 className="font-heading text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="break-words font-heading text-[1.75rem] font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
               {titleMain}
               <span className="text-brand">{titleHighlight}</span>
             </h1>
@@ -32,7 +32,7 @@ export function Hero({ hero, features }: { hero: HeroType | null; features: Hero
 
           {subtitle && (
             <Reveal y={18} delay={100}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70">{subtitle}</p>
+              <p className="mt-6 max-w-xl break-words text-base leading-relaxed text-white/70">{subtitle}</p>
             </Reveal>
           )}
 

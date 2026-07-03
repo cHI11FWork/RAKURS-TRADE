@@ -34,7 +34,7 @@ export function LoginForm() {
           <span className="terminal-cursor">_</span>
         </h1>
         <p
-          className="overflow-hidden whitespace-nowrap text-center text-sm text-white/50"
+          className="overflow-hidden text-center text-sm text-white/50"
           style={{ animation: "terminal-reveal 0.9s steps(30, end) 0.3s both" }}
         >
           {dict.admin.login.subtitle}

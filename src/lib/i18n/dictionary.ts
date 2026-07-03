@@ -65,6 +65,7 @@ const uk = {
       contentUkSuffix: " (укр)",
       contentEnSuffix: " (англ)",
       langToggleAria: "Мова адмін-панелі",
+      menuAriaLabel: "Меню",
     },
     overview: {
       title: "Огляд",
@@ -255,6 +256,7 @@ const en: typeof uk = {
       contentUkSuffix: " (UA)",
       contentEnSuffix: " (EN)",
       langToggleAria: "Admin panel language",
+      menuAriaLabel: "Menu",
     },
     overview: {
       title: "Overview",

@@ -19,10 +19,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background: var(--color-ink);
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 
 .container-page {
