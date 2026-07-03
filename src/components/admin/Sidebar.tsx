@@ -11,6 +11,7 @@ import {
   Inbox,
   ExternalLink,
   LogOut,
+  Bell,
 } from "lucide-react";
 import { signOut } from "@/app/admin/actions";
 import { LOCALE_COOKIE, type Locale } from "@/lib/i18n/locale";
@@ -45,21 +46,33 @@ export function Sidebar({
   }
 
   return (
-    <aside className="flex w-full shrink-0 flex-col border-b border-ink-border bg-ink-soft lg:h-screen lg:w-64 lg:border-b-0 lg:border-r">
+    <aside className="flex w-full shrink-0 flex-col border-b border-ink-border bg-ink-soft lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:overflow-y-auto lg:border-b-0 lg:border-r">
       <div className="px-5 py-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <p className="font-heading text-sm font-extrabold tracking-wide text-white">
             RAKURS <span className="text-brand">TRADE</span>
           </p>
-          <button
-            onClick={toggleLocale}
-            className="flex items-center gap-1 text-xs font-bold tracking-wide text-white/90"
-            aria-label={dict.admin.common.langToggleAria}
-          >
-            <span className={locale === "uk" ? "text-brand" : "text-white/50"}>UA</span>
-            <span className="text-white/30">|</span>
-            <span className={locale === "en" ? "text-brand" : "text-white/50"}>EN</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/admin/leads"
+              className="relative flex h-7 w-7 items-center justify-center rounded-none text-white/60 transition-colors hover:text-brand"
+              aria-label={dict.admin.sidebar.nav.leads}
+            >
+              <Bell className="h-4 w-4" />
+              {unreadCount > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-2 w-2 rounded-full bg-brand" />
+              )}
+            </Link>
+            <button
+              onClick={toggleLocale}
+              className="flex items-center gap-1 text-xs font-bold tracking-wide text-white/90"
+              aria-label={dict.admin.common.langToggleAria}
+            >
+              <span className={locale === "uk" ? "text-brand" : "text-white/50"}>UA</span>
+              <span className="text-white/30">|</span>
+              <span className={locale === "en" ? "text-brand" : "text-white/50"}>EN</span>
+            </button>
+          </div>
         </div>
         <p className="mt-0.5 text-xs text-white/40">{dict.admin.sidebar.panelLabel}</p>
       </div>
