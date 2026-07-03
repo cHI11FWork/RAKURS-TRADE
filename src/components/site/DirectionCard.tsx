@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import type { DirectionWithItems } from "@/lib/supabase/types";
-import { AppIcon } from "@/lib/icons";
+
+const BOLT_D = "M18 3 6 18h7l-1 11 12-15h-7z";
 
 const DEFAULT_DIRECTION_IMAGES: Record<string, string> = {
   bolt: "/images/direction-power.jpg",
@@ -42,10 +43,11 @@ export function DirectionCard({
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(245,179,1,0.18),transparent_60%)]" />
         )}
 
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-none bg-brand/15 ring-1 ring-brand/30 backdrop-blur-sm">
-            <AppIcon name={direction.icon} className="h-7 w-7 text-brand" />
-          </div>
+        <div className="absolute left-3 top-3 flex h-11 w-11 items-center justify-center rounded-none bg-ink border border-brand/40">
+          <svg viewBox="0 0 32 32" className="h-6 w-6 shrink-0" aria-hidden="true">
+            <rect width="32" height="32" fill="#0a0b0e" />
+            <path d={BOLT_D} fill="#f5b301" transform="translate(1,0)" />
+          </svg>
         </div>
 
         {direction.enable_lightning_effect && (
