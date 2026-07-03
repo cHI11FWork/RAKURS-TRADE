@@ -31,26 +31,34 @@ export function DirectionCard({
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-none border border-ink-border bg-ink-card transition-transform duration-300 ease-out hover:-translate-y-2 hover:rotate-0 hover:scale-[1.015] ${
+      className={`group relative flex flex-col overflow-hidden rounded-none border border-ink-border transition-transform duration-300 ease-out hover:-translate-y-2 hover:rotate-0 hover:scale-[1.015] ${
         TILT_CLASSES[tiltIndex % 3]
       } ${direction.enable_lightning_effect ? "lightning-card" : ""}`}
       tabIndex={direction.enable_lightning_effect ? 0 : undefined}
     >
-      <div className="relative h-40 overflow-hidden bg-gradient-to-br from-ink-soft to-black">
+      <div className="absolute inset-0 bg-gradient-to-br from-ink-soft to-black">
         {imageSrc ? (
           <Image
             src={imageSrc}
             alt={title}
             fill
-            className={`object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${
+            className={`object-cover opacity-90 transition-transform duration-500 ease-out group-hover:scale-105 ${
               direction.enable_lightning_effect ? "lightning-photo" : ""
             }`}
           />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(245,179,1,0.18),transparent_60%)]" />
         )}
+      </div>
 
-        <div className="absolute left-3 top-3 flex h-11 w-11 items-center justify-center rounded-none border border-brand/40 bg-black/35 backdrop-blur-sm">
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,11,14,0.15)_0%,rgba(10,11,14,0.55)_30%,rgba(10,11,14,0.88)_50%,#0a0b0e_68%)]" />
+
+      {direction.enable_lightning_effect && (
+        <div className="lightning-flash pointer-events-none absolute inset-0 bg-white" />
+      )}
+
+      <div className="relative z-10 flex h-40 shrink-0 items-start p-3">
+        <div className="flex h-11 w-11 items-center justify-center rounded-none border border-brand/40 bg-black/35 backdrop-blur-sm">
           {direction.icon === "bolt" ? (
             <svg viewBox="0 0 32 32" className="h-6 w-6 shrink-0" aria-hidden="true">
               <path d={BOLT_D} fill="#f5b301" transform="translate(1,0)" />
@@ -59,13 +67,9 @@ export function DirectionCard({
             <AppIcon name={direction.icon} className="h-6 w-6 shrink-0 text-brand" />
           )}
         </div>
-
-        {direction.enable_lightning_effect && (
-          <div className="lightning-flash pointer-events-none absolute inset-0 bg-white" />
-        )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="relative z-10 flex flex-1 flex-col px-6 pb-6">
         <h3 className="font-heading text-lg font-extrabold uppercase tracking-wide text-white">
           {title}
         </h3>
