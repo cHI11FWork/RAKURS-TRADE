@@ -123,13 +123,13 @@ export default async function HeroAdminPage() {
           </form>
         </div>
 
-        <div className="mt-4 space-y-3">
+        <div className="mt-4 space-y-4">
           {features.map((feature, i) => (
             <div
               key={feature.id}
-              className="flex gap-3 rounded-none border border-ink-border bg-ink-card p-4"
+              className="rounded-none border border-ink-border bg-ink-card p-6"
             >
-              <div className="flex items-center">
+              <div className="flex items-start gap-3">
                 <SortButtons
                   onUp={moveHeroFeature.bind(null, feature.id, "up")}
                   onDown={moveHeroFeature.bind(null, feature.id, "down")}
@@ -137,58 +137,60 @@ export default async function HeroAdminPage() {
                   disableDown={i === features.length - 1}
                   locale={locale}
                 />
-              </div>
 
-              <form
-                action={updateHeroFeature.bind(null, feature.id)}
-                className="flex-1 space-y-3"
-              >
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-[10rem_1fr_1fr]">
-                  <IconPicker name="icon" defaultValue={feature.icon} locale={locale} />
-                  <input
-                    name="title"
-                    defaultValue={feature.title}
-                    className={inputClass}
-                    placeholder={`${t.featureTitlePlaceholder}${ukSuffix}`}
-                  />
-                  <input
-                    name="subtitle"
-                    defaultValue={feature.subtitle}
-                    className={inputClass}
-                    placeholder={`${t.featureSubtitlePlaceholder}${ukSuffix}`}
-                  />
-                </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:pl-[calc(10rem+0.75rem)]">
-                  <input
-                    name="title_en"
-                    defaultValue={feature.title_en}
-                    className={inputClass}
-                    placeholder={`${t.featureTitlePlaceholder}${enSuffix}`}
-                  />
-                  <input
-                    name="subtitle_en"
-                    defaultValue={feature.subtitle_en}
-                    className={inputClass}
-                    placeholder={`${t.featureSubtitlePlaceholder}${enSuffix}`}
-                  />
-                </div>
-                <SaveButton label={dict.common.save} locale={locale} />
-              </form>
+                <form
+                  action={updateHeroFeature.bind(null, feature.id)}
+                  className="flex-1 space-y-4"
+                >
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-[12rem_1fr_1fr]">
+                    <Field label={t.featureIconLabel}>
+                      <IconPicker name="icon" defaultValue={feature.icon} locale={locale} />
+                    </Field>
+                    <Field label={`${t.featureTitlePlaceholder}${ukSuffix}`}>
+                      <input name="title" defaultValue={feature.title} className={inputClass} />
+                    </Field>
+                    <Field label={`${t.featureTitlePlaceholder}${enSuffix}`}>
+                      <input name="title_en" defaultValue={feature.title_en} className={inputClass} />
+                    </Field>
+                  </div>
 
-              <div className="flex flex-col items-center gap-2">
-                <VisibilityToggle
-                  isVisible={feature.is_visible}
-                  action={toggleHeroFeature.bind(null, feature.id, feature.is_visible)}
-                  locale={locale}
-                />
-                <form action={deleteHeroFeature}>
-                  <input type="hidden" name="id" value={feature.id} />
-                  <ConfirmSubmitButton
-                    label={<Trash2 className="h-4 w-4" />}
-                    confirmText={t.deleteFeatureConfirm}
-                    className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
-                  />
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label={`${t.featureSubtitlePlaceholder}${ukSuffix}`}>
+                      <textarea
+                        name="subtitle"
+                        defaultValue={feature.subtitle}
+                        rows={2}
+                        className={inputClass}
+                      />
+                    </Field>
+                    <Field label={`${t.featureSubtitlePlaceholder}${enSuffix}`}>
+                      <textarea
+                        name="subtitle_en"
+                        defaultValue={feature.subtitle_en}
+                        rows={2}
+                        className={inputClass}
+                      />
+                    </Field>
+                  </div>
+
+                  <SaveButton label={dict.common.save} locale={locale} />
                 </form>
+
+                <div className="flex flex-col items-center gap-2">
+                  <VisibilityToggle
+                    isVisible={feature.is_visible}
+                    action={toggleHeroFeature.bind(null, feature.id, feature.is_visible)}
+                    locale={locale}
+                  />
+                  <form action={deleteHeroFeature}>
+                    <input type="hidden" name="id" value={feature.id} />
+                    <ConfirmSubmitButton
+                      label={<Trash2 className="h-4 w-4" />}
+                      confirmText={t.deleteFeatureConfirm}
+                      className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
+                    />
+                  </form>
+                </div>
               </div>
             </div>
           ))}
