@@ -155,6 +155,79 @@ body {
   }
 }
 
+@keyframes logo-glow-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 2px rgba(245, 179, 1, 0.35)) drop-shadow(0 0 6px rgba(245, 179, 1, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(245, 179, 1, 0.65)) drop-shadow(0 0 14px rgba(245, 179, 1, 0.3));
+  }
+}
+
+.logo-bolt-svg {
+  animation: logo-glow-pulse 3.4s ease-in-out infinite;
+}
+
+.logo-shine-bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateX(-14px) rotate(22deg);
+  animation: logo-shine-sweep-ambient 5.5s ease-in-out infinite;
+}
+
+@keyframes logo-shine-sweep-ambient {
+  0%,
+  70% {
+    transform: translateX(-14px) rotate(22deg);
+    opacity: 0;
+  }
+  74% {
+    opacity: 0.9;
+  }
+  92%,
+  100% {
+    transform: translateX(30px) rotate(22deg);
+    opacity: 0;
+  }
+}
+
+@keyframes logo-shine-sweep-fast {
+  0% {
+    transform: translateX(-14px) rotate(22deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateX(30px) rotate(22deg);
+    opacity: 0;
+  }
+}
+
+.group:hover .logo-shine-bar {
+  animation: logo-shine-sweep-fast 0.7s ease-out;
+}
+
+.logo-strike-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+
+.group:hover .logo-strike-ring {
+  animation: logo-strike-ring 0.6s ease-out;
+}
+
+@keyframes logo-strike-ring {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
