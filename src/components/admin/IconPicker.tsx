@@ -15,7 +15,11 @@ export function IconPicker({
   const labels = dictionaries[locale].admin.iconPicker;
 
   return (
-    <select name={name} defaultValue={defaultValue} className={inputClass}>
+    <select
+      name={name}
+      defaultValue={defaultValue}
+      className={`${inputClass} transition-colors duration-200 hover:border-brand/50`}
+    >
       {ICON_OPTIONS.map((icon) => (
         <option key={icon} value={icon}>
           {labels[icon as keyof typeof labels] ?? icon}

@@ -32,7 +32,7 @@ export default async function DirectionsAdminPage() {
   const enSuffix = dict.common.contentEnSuffix;
 
   return (
-    <div className="space-y-8">
+    <div className="admin-fade-up space-y-8">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
@@ -41,7 +41,7 @@ export default async function DirectionsAdminPage() {
         <form action={addDirection}>
           <button
             type="submit"
-            className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-2 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
+            className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-2 text-xs font-bold uppercase tracking-wide text-brand transition-all hover:-translate-y-0.5 hover:bg-brand/10"
           >
             <Plus className="h-3.5 w-3.5" />
             {t.addDirectionButton}
@@ -51,7 +51,11 @@ export default async function DirectionsAdminPage() {
 
       <div className="space-y-6">
         {directions.map((direction, i) => (
-          <div key={direction.id} className="rounded-none border border-ink-border bg-ink-card p-6">
+          <div
+            key={direction.id}
+            style={{ animationDelay: `${i * 70}ms` }}
+            className="admin-card-hover admin-stagger-in rounded-none border border-ink-border bg-ink-card p-6"
+          >
             <div className="flex items-start gap-3">
               <SortButtons
                 onUp={moveDirection.bind(null, direction.id, "up")}
@@ -149,7 +153,7 @@ export default async function DirectionsAdminPage() {
                 <form action={addDirectionItem.bind(null, direction.id)}>
                   <button
                     type="submit"
-                    className="flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-brand hover:underline"
+                    className="flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-brand transition-transform hover:-translate-y-0.5 hover:underline"
                   >
                     <Plus className="h-3 w-3" />
                     {t.addItemButton}
@@ -159,7 +163,11 @@ export default async function DirectionsAdminPage() {
 
               <div className="mt-3 space-y-2">
                 {direction.items.map((item, itemIndex) => (
-                  <div key={item.id} className="flex items-center gap-2">
+                  <div
+                    key={item.id}
+                    style={{ animationDelay: `${itemIndex * 50}ms` }}
+                    className="admin-stagger-in flex items-center gap-2"
+                  >
                     <SortButtons
                       onUp={moveDirectionItem.bind(null, direction.id, item.id, "up")}
                       onDown={moveDirectionItem.bind(null, direction.id, item.id, "down")}

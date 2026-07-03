@@ -17,12 +17,12 @@ export default async function AdminHome() {
   ];
 
   return (
-    <div>
+    <div className="admin-fade-up">
       <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
       <p className="mt-1 text-sm text-white/50">{t.subtitle}</p>
 
       {unread > 0 && (
-        <div className="mt-6 rounded-none border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand">
+        <div className="admin-fade-up mt-6 rounded-none border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand">
           {t.newLeadsPrefix} {unread} {t.newLeadsSuffix}{" "}
           <Link href="/admin/leads" className="font-bold underline">
             {t.viewLink}
@@ -31,13 +31,14 @@ export default async function AdminHome() {
       )}
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {CARDS.map((card) => (
+        {CARDS.map((card, i) => (
           <Link
             key={card.href}
             href={card.href}
-            className="rounded-none border border-ink-border bg-ink-card p-5 transition-colors hover:border-brand/40"
+            style={{ animationDelay: `${i * 60}ms` }}
+            className="admin-card-hover admin-stagger-in group rounded-none border border-ink-border bg-ink-card p-5"
           >
-            <card.icon className="h-6 w-6 text-brand" />
+            <card.icon className="h-6 w-6 text-brand transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" />
             <p className="mt-3 font-heading text-sm font-bold text-white">{card.label}</p>
             <p className="mt-1 text-xs leading-relaxed text-white/50">{card.desc}</p>
           </Link>

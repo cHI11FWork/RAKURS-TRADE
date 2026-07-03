@@ -19,4 +19,4 @@ export function Field({
 }
 
 export const inputClass =
-  "w-full rounded-none border border-ink-border bg-ink-soft px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 outline-none focus:border-brand";
+  "w-full rounded-none border border-ink-border bg-ink-soft px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 outline-none transition-all duration-200 focus:border-brand focus:shadow-[0_0_0_3px_rgba(245,179,1,0.12)]";

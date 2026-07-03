@@ -14,17 +14,18 @@ export default async function LeadsAdminPage() {
   const dateLocale = locale === "en" ? "en-US" : "uk-UA";
 
   return (
-    <div className="space-y-6">
+    <div className="admin-fade-up space-y-6">
       <div>
         <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
         <p className="mt-1 text-sm text-white/50">{t.subtitle}</p>
       </div>
 
       <div className="space-y-3">
-        {leads.map((lead) => (
+        {leads.map((lead, i) => (
           <div
             key={lead.id}
-            className={`rounded-none border p-5 ${
+            style={{ animationDelay: `${i * 60}ms` }}
+            className={`admin-card-hover admin-stagger-in rounded-none border p-5 ${
               lead.is_read ? "border-ink-border bg-ink-card" : "border-brand/30 bg-brand/[0.04]"
             }`}
           >

@@ -32,13 +32,13 @@ export default async function HeroAdminPage() {
   const enSuffix = dict.common.contentEnSuffix;
 
   return (
-    <div className="space-y-10">
+    <div className="admin-fade-up space-y-10">
       <div>
         <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
         <p className="mt-1 text-sm text-white/50">{t.subtitle}</p>
       </div>
 
-      <form action={updateHero} className="space-y-4 rounded-none border border-ink-border bg-ink-card p-6">
+      <form action={updateHero} className="admin-card-hover space-y-4 rounded-none border border-ink-border bg-ink-card p-6">
         <Field label={`${t.titleMainLabel}${ukSuffix}`} hint={t.titleMainHint}>
           <textarea
             name="title_main"
@@ -115,7 +115,7 @@ export default async function HeroAdminPage() {
           <form action={addHeroFeature}>
             <button
               type="submit"
-              className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
+              className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand transition-all hover:-translate-y-0.5 hover:bg-brand/10"
             >
               <Plus className="h-3.5 w-3.5" />
               {t.addButton}
@@ -127,7 +127,8 @@ export default async function HeroAdminPage() {
           {features.map((feature, i) => (
             <div
               key={feature.id}
-              className="rounded-none border border-ink-border bg-ink-card p-6"
+              style={{ animationDelay: `${i * 70}ms` }}
+              className="admin-card-hover admin-stagger-in rounded-none border border-ink-border bg-ink-card p-6"
             >
               <div className="flex items-start gap-3">
                 <SortButtons

@@ -27,7 +27,7 @@ export function SortButtons({
         type="button"
         disabled={disableUp || isPending}
         onClick={() => startTransition(() => onUp())}
-        className="flex h-5 w-6 items-center justify-center text-white/50 hover:text-brand disabled:opacity-20"
+        className="admin-icon-btn flex h-5 w-6 items-center justify-center text-white/50 hover:text-brand disabled:opacity-20"
         aria-label={dict.up}
       >
         <ChevronUp className="h-4 w-4" />
@@ -36,7 +36,7 @@ export function SortButtons({
         type="button"
         disabled={disableDown || isPending}
         onClick={() => startTransition(() => onDown())}
-        className="flex h-5 w-6 items-center justify-center text-white/50 hover:text-brand disabled:opacity-20"
+        className="admin-icon-btn flex h-5 w-6 items-center justify-center text-white/50 hover:text-brand disabled:opacity-20"
         aria-label={dict.down}
       >
         <ChevronDown className="h-4 w-4" />

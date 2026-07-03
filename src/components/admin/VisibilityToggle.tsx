@@ -25,7 +25,7 @@ export function VisibilityToggle({
         type="submit"
         disabled={isPending}
         title={isVisible ? dict.hide : dict.show}
-        className={`flex h-8 w-8 items-center justify-center rounded-none border transition-colors disabled:opacity-50 ${
+        className={`admin-icon-btn flex h-8 w-8 items-center justify-center rounded-none border disabled:opacity-50 ${
           isVisible
             ? "border-brand/30 text-brand hover:bg-brand/10"
             : "border-white/10 text-white/30 hover:bg-white/5"

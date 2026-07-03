@@ -55,12 +55,12 @@ export function Sidebar({
           <div className="flex items-center gap-3">
             <Link
               href="/admin/leads"
-              className="relative flex h-7 w-7 items-center justify-center rounded-none text-white/60 transition-colors hover:text-brand"
+              className="admin-icon-btn relative flex h-7 w-7 items-center justify-center rounded-none text-white/60 hover:text-brand"
               aria-label={dict.admin.sidebar.nav.leads}
             >
               <Bell className="h-4 w-4" />
               {unreadCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-2 w-2 rounded-full bg-brand" />
+                <span className="badge-pulse absolute -right-0.5 -top-0.5 flex h-2 w-2 rounded-full bg-brand" />
               )}
             </Link>
             <button
@@ -85,16 +85,16 @@ export function Sidebar({
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center justify-between rounded-none px-3 py-2.5 text-sm font-medium transition-colors ${
-                active ? "bg-brand/15 text-brand" : "text-white/70 hover:bg-white/5 hover:text-white"
+              className={`admin-nav-link group flex items-center justify-between rounded-none px-3 py-2.5 text-sm font-medium ${
+                active ? "is-active bg-brand/15 text-brand" : "text-white/70 hover:bg-white/5 hover:text-white"
               }`}
             >
               <span className="flex items-center gap-2.5">
-                <Icon className="h-4 w-4" />
+                <Icon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
                 {item.label}
               </span>
               {item.href === "/admin/leads" && unreadCount > 0 && (
-                <span className="flex h-5 min-w-5 items-center justify-center rounded-none bg-brand px-1 text-[11px] font-bold text-ink">
+                <span className="badge-pulse flex h-5 min-w-5 items-center justify-center rounded-none bg-brand px-1 text-[11px] font-bold text-ink">
                   {unreadCount}
                 </span>
               )}
@@ -108,18 +108,18 @@ export function Sidebar({
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-white"
+          className="admin-nav-link group flex items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-white"
         >
-          <ExternalLink className="h-4 w-4" />
+          <ExternalLink className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           {dict.admin.sidebar.viewSite}
         </a>
         <p className="truncate px-3 text-xs text-white/30">{email}</p>
         <form action={signOut}>
           <button
             type="submit"
-            className="flex w-full items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-red-400"
+            className="admin-nav-link group flex w-full items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-red-400"
           >
-            <LogOut className="h-4 w-4" />
+            <LogOut className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             {dict.admin.sidebar.logout}
           </button>
         </form>

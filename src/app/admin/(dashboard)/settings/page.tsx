@@ -15,7 +15,7 @@ export default async function SettingsAdminPage() {
   const enSuffix = dict.common.contentEnSuffix;
 
   return (
-    <div className="space-y-8">
+    <div className="admin-fade-up space-y-8">
       <div>
         <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
         <p className="mt-1 text-sm text-white/50">{t.subtitle}</p>
@@ -23,7 +23,7 @@ export default async function SettingsAdminPage() {
 
       <form
         action={updateSiteSettings}
-        className="space-y-4 rounded-none border border-ink-border bg-ink-card p-6"
+        className="admin-card-hover space-y-4 rounded-none border border-ink-border bg-ink-card p-6"
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label={t.phoneLabel}>
