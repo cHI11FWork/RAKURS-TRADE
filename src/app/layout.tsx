@@ -5,6 +5,7 @@ import { LocaleProvider } from "@/lib/i18n/LocaleContext";
 import { getServerLocale } from "@/lib/i18n/server";
 import { dictionaries } from "@/lib/i18n/dictionary";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { getHero } from "@/lib/data";
 
 const inter = Inter({
   variable: "--font-body",
@@ -28,10 +29,14 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogLocale = locale === "en" ? "en_US" : "uk_UA";
   const altLocale = locale === "en" ? "uk_UA" : "en_US";
 
+  const hero = await getHero();
+  const heroSubtitle = locale === "en" ? hero?.subtitle_en : hero?.subtitle;
+  const description = heroSubtitle || dict.meta.description;
+
   return {
     metadataBase: new URL(SITE_URL),
     title: dict.meta.title,
-    description: dict.meta.description,
+    description,
     applicationName: SITE_NAME,
     alternates: {
       canonical: "/",
@@ -41,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/",
       siteName: SITE_NAME,
       title: dict.meta.title,
-      description: dict.meta.description,
+      description,
       locale: ogLocale,
       alternateLocale: altLocale,
       images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: SITE_NAME }],
@@ -49,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: dict.meta.title,
-      description: dict.meta.description,
+      description,
       images: ["/opengraph-image"],
     },
     robots: {
