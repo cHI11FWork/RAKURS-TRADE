@@ -30,17 +30,19 @@ export function Footer({ settings }: { settings: SiteSettings | null }) {
           </p>
         )}
 
-        <p className="text-xs text-white/25">
-          {dict.site.footer.developedBy}{" "}
-          <a
-            href="https://steck.top"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-heading text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-brand"
-          >
+        <a
+          href="https://steck.top"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col items-center leading-none"
+        >
+          <span className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/30">
+            {dict.site.footer.developedBy}
+          </span>
+          <span className="mt-1 font-heading text-sm font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-brand">
             CTEK.
-          </a>
-        </p>
+          </span>
+        </a>
       </Reveal>
     </footer>
   );
