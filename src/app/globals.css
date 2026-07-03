@@ -125,41 +125,6 @@ body {
   }
 }
 
-.lightning-card .lightning-bolt-path {
-  stroke-dasharray: 220;
-  stroke-dashoffset: 220;
-  opacity: 0;
-  filter: drop-shadow(0 0 6px rgba(191, 233, 255, 0.95)) drop-shadow(0 0 16px rgba(245, 179, 1, 0.6));
-}
-
-.lightning-card .lightning-branch {
-  stroke-dasharray: 110;
-  stroke-dashoffset: 110;
-  opacity: 0;
-  filter: drop-shadow(0 0 4px rgba(191, 233, 255, 0.9));
-}
-
-.lightning-card:hover .lightning-bolt-path,
-.lightning-card:focus-within .lightning-bolt-path {
-  animation:
-    bolt-draw 0.28s cubic-bezier(0.2, 0.9, 0.3, 1) forwards,
-    bolt-fade 0.55s ease-in 0.48s forwards;
-}
-
-.lightning-card:hover .lightning-branch-a,
-.lightning-card:focus-within .lightning-branch-a {
-  animation:
-    branch-draw 0.2s ease-out 0.1s forwards,
-    bolt-fade 0.45s ease-in 0.45s forwards;
-}
-
-.lightning-card:hover .lightning-branch-b,
-.lightning-card:focus-within .lightning-branch-b {
-  animation:
-    branch-draw 0.2s ease-out 0.18s forwards,
-    bolt-fade 0.45s ease-in 0.45s forwards;
-}
-
 .lightning-card .lightning-flash {
   opacity: 0;
 }
@@ -177,34 +142,6 @@ body {
 .lightning-card:hover .lightning-photo,
 .lightning-card:focus-within .lightning-photo {
   animation: lightning-photo-punch 0.85s ease-out;
-}
-
-@keyframes bolt-draw {
-  from {
-    stroke-dashoffset: 220;
-    opacity: 1;
-  }
-  to {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes branch-draw {
-  from {
-    stroke-dashoffset: 110;
-    opacity: 1;
-  }
-  to {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes bolt-fade {
-  to {
-    opacity: 0;
-  }
 }
 
 @keyframes lightning-flash-once {

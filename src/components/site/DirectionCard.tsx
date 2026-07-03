@@ -21,7 +21,6 @@ export function DirectionCard({
   tiltIndex?: number;
 }) {
   const imageSrc = direction.image_url ?? DEFAULT_DIRECTION_IMAGES[direction.icon] ?? null;
-  const glowId = `bolt-glow-${direction.id}`;
 
   return (
     <div
@@ -55,53 +54,7 @@ export function DirectionCard({
         </div>
 
         {direction.enable_lightning_effect && (
-          <>
-            <div className="lightning-flash pointer-events-none absolute inset-0 bg-white" />
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full"
-              viewBox="0 0 200 160"
-              fill="none"
-            >
-              <defs>
-                <filter id={glowId} x="-80%" y="-80%" width="260%" height="260%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-
-              <g filter={`url(#${glowId})`}>
-                <path
-                  className="lightning-branch lightning-branch-a"
-                  d="M116 94 L78 112 L92 108 L58 138"
-                  stroke="#dff2ff"
-                  strokeWidth="1.6"
-                  strokeLinejoin="miter"
-                  strokeLinecap="butt"
-                />
-                <path
-                  className="lightning-branch lightning-branch-b"
-                  d="M134 48 L166 30 L150 34 L172 8"
-                  stroke="#dff2ff"
-                  strokeWidth="1.6"
-                  strokeLinejoin="miter"
-                  strokeLinecap="butt"
-                />
-                <path
-                  className="lightning-bolt-path"
-                  d="M140 6 L118 48 L134 48 L102 94 L116 94 L82 150"
-                  stroke="#ffffff"
-                  strokeWidth="2.4"
-                  strokeLinejoin="miter"
-                  strokeLinecap="butt"
-                  fill="none"
-                />
-              </g>
-            </svg>
-          </>
+          <div className="lightning-flash pointer-events-none absolute inset-0 bg-white" />
         )}
       </div>
 
