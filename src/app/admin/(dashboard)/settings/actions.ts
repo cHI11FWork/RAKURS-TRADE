@@ -11,11 +11,14 @@ export async function updateSiteSettings(formData: FormData) {
       phone: String(formData.get("phone") ?? ""),
       email: String(formData.get("email") ?? ""),
       address: String(formData.get("address") ?? ""),
+      address_en: String(formData.get("address_en") ?? ""),
       telegram_url: String(formData.get("telegram_url") ?? ""),
       whatsapp_url: String(formData.get("whatsapp_url") ?? ""),
       linkedin_url: String(formData.get("linkedin_url") ?? ""),
       footer_note_1: String(formData.get("footer_note_1") ?? ""),
+      footer_note_1_en: String(formData.get("footer_note_1_en") ?? ""),
       footer_note_2: String(formData.get("footer_note_2") ?? ""),
+      footer_note_2_en: String(formData.get("footer_note_2_en") ?? ""),
     })
     .eq("id", 1);
 

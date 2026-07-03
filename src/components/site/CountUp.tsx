@@ -5,7 +5,13 @@ import { useEffect, useRef, useState } from "react";
 export function CountUp({ text, duration = 1200 }: { text: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(text);
+  const [prevText, setPrevText] = useState(text);
   const started = useRef(false);
+
+  if (text !== prevText) {
+    setPrevText(text);
+    setDisplay(text);
+  }
 
   useEffect(() => {
     const match = text.match(/^(\d+)(.*)$/);

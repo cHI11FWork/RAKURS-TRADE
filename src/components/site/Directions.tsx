@@ -1,8 +1,12 @@
+"use client";
+
 import type { DirectionWithItems } from "@/lib/supabase/types";
 import { DirectionCard } from "./DirectionCard";
 import { Reveal } from "./Reveal";
+import { useLocale } from "@/lib/i18n/LocaleContext";
 
 export function Directions({ directions }: { directions: DirectionWithItems[] }) {
+  const { dict } = useLocale();
   if (directions.length === 0) return null;
 
   return (
@@ -10,7 +14,7 @@ export function Directions({ directions }: { directions: DirectionWithItems[] })
       <div className="container-page">
         <Reveal className="flex justify-center">
           <h2 className="text-center font-heading text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl">
-            Наші напрями
+            {dict.site.directions.heading}
           </h2>
         </Reveal>
 

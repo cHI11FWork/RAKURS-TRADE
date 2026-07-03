@@ -1,6 +1,8 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { dictionaries } from "@/lib/i18n/dictionary";
+import { isLocale } from "@/lib/i18n/locale";
 
 export type LeadFormState = {
   status: "idle" | "success" | "error";
@@ -11,6 +13,10 @@ export async function submitLead(
   _prevState: LeadFormState,
   formData: FormData
 ): Promise<LeadFormState> {
+  const localeValue = formData.get("locale");
+  const locale = isLocale(String(localeValue ?? "")) ? String(localeValue) : "uk";
+  const dict = dictionaries[locale as "uk" | "en"].site.contact;
+
   const name = String(formData.get("name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const company = String(formData.get("company") ?? "").trim();
@@ -18,7 +24,7 @@ export async function submitLead(
   const message = String(formData.get("message") ?? "").trim();
 
   if (!name || !phone || !message) {
-    return { status: "error", message: "Будь ласка, заповніть обов'язкові поля: ім'я, телефон і опис задачі." };
+    return { status: "error", message: dict.errorRequired };
   }
 
   const supabase = await createClient();
@@ -31,8 +37,8 @@ export async function submitLead(
   });
 
   if (error) {
-    return { status: "error", message: "Не вдалося надіслати заявку. Спробуйте ще раз або зателефонуйте нам." };
+    return { status: "error", message: dict.errorFailed };
   }
 
-  return { status: "success", message: "Дякуємо! Ваша заявка надіслана, ми зв'яжемося з вами найближчим часом." };
+  return { status: "success", message: dict.success };
 }

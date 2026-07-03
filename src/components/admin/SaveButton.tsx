@@ -1,9 +1,12 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
+import type { Locale } from "@/lib/i18n/locale";
+import { dictionaries } from "@/lib/i18n/dictionary";
 
-export function SaveButton({ label = "Зберегти" }: { label?: string }) {
+export function SaveButton({ label, locale = "uk" }: { label?: string; locale?: Locale }) {
   const { pending } = useFormStatus();
+  const dict = dictionaries[locale];
 
   return (
     <button
@@ -11,7 +14,7 @@ export function SaveButton({ label = "Зберегти" }: { label?: string }) {
       disabled={pending}
       className="inline-flex items-center gap-2 rounded-none bg-brand px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-ink transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {pending ? "Зберігаємо..." : label}
+      {pending ? dict.admin.common.saving : (label ?? dict.admin.common.save)}
     </button>
   );
 }

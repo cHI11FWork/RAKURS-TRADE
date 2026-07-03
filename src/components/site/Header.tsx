@@ -3,17 +3,18 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
-
-const NAV_LINKS = [
-  { href: "#about", label: "Про компанію" },
-  { href: "#directions", label: "Наші напрями" },
-  { href: "#contacts", label: "Контакти" },
-];
+import { useLocale } from "@/lib/i18n/LocaleContext";
 
 export function Header() {
+  const { locale, setLocale, dict } = useLocale();
   const [open, setOpen] = useState(false);
-  const [langHint, setLangHint] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const NAV_LINKS = [
+    { href: "#about", label: dict.site.nav.about },
+    { href: "#directions", label: dict.site.nav.directions },
+    { href: "#contacts", label: dict.site.nav.contacts },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -49,28 +50,21 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <div className="relative">
-            <button
-              onClick={() => setLangHint((v) => !v)}
-              className="flex items-center gap-1 text-sm font-bold tracking-wide text-white/90"
-              aria-label="Мова сайту"
-            >
-              <span className="text-brand">UA</span>
-              <span className="text-white/30">|</span>
-              <span className="text-white/50">EN</span>
-            </button>
-            {langHint && (
-              <div className="absolute right-0 top-8 w-48 rounded-none border border-ink-border bg-ink-card px-3 py-2 text-xs text-white/70 shadow-xl">
-                Англійська версія скоро з&apos;явиться
-              </div>
-            )}
-          </div>
+          <button
+            onClick={() => setLocale(locale === "uk" ? "en" : "uk")}
+            className="flex items-center gap-1 text-sm font-bold tracking-wide text-white/90"
+            aria-label={dict.site.header.langAriaLabel}
+          >
+            <span className={locale === "uk" ? "text-brand" : "text-white/50"}>UA</span>
+            <span className="text-white/30">|</span>
+            <span className={locale === "en" ? "text-brand" : "text-white/50"}>EN</span>
+          </button>
         </div>
 
         <button
           className="p-2 text-white lg:hidden"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Меню"
+          aria-label={dict.site.header.menuAriaLabel}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -89,6 +83,15 @@ export function Header() {
                 {link.label}
               </a>
             ))}
+            <button
+              onClick={() => setLocale(locale === "uk" ? "en" : "uk")}
+              className="mt-1 flex items-center gap-1 px-3 py-2 text-sm font-bold tracking-wide text-white/90"
+              aria-label={dict.site.header.langAriaLabel}
+            >
+              <span className={locale === "uk" ? "text-brand" : "text-white/50"}>UA</span>
+              <span className="text-white/30">|</span>
+              <span className={locale === "en" ? "text-brand" : "text-white/50"}>EN</span>
+            </button>
           </nav>
         </div>
       )}

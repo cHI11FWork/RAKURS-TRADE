@@ -6,6 +6,8 @@ import { ConfirmSubmitButton } from "@/components/admin/ConfirmSubmitButton";
 import { VisibilityToggle } from "@/components/admin/VisibilityToggle";
 import { SortButtons } from "@/components/admin/SortButtons";
 import { IconPicker } from "@/components/admin/IconPicker";
+import { getServerLocale } from "@/lib/i18n/server";
+import { dictionaries } from "@/lib/i18n/dictionary";
 import {
   addAboutStat,
   deleteAboutStat,
@@ -18,23 +20,34 @@ import {
 export const metadata = { title: "Про компанію — RAKURS TRADE" };
 
 export default async function AboutAdminPage() {
-  const [about, stats] = await Promise.all([getAboutContentAdmin(), getAboutStatsAdmin()]);
+  const [about, stats, locale] = await Promise.all([
+    getAboutContentAdmin(),
+    getAboutStatsAdmin(),
+    getServerLocale(),
+  ]);
+  const dict = dictionaries[locale].admin;
+  const t = dict.about;
+  const ukSuffix = dict.common.contentUkSuffix;
+  const enSuffix = dict.common.contentEnSuffix;
 
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="font-heading text-2xl font-extrabold text-white">Про компанію</h1>
-        <p className="mt-1 text-sm text-white/50">Текст про компанію та ключові показники.</p>
+        <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
+        <p className="mt-1 text-sm text-white/50">{t.subtitle}</p>
       </div>
 
       <form
         action={updateAboutContent}
         className="space-y-4 rounded-none border border-ink-border bg-ink-card p-6"
       >
-        <Field label="Заголовок секції">
+        <Field label={`${t.headingLabel}${ukSuffix}`}>
           <input name="heading" defaultValue={about?.heading} className={inputClass} />
         </Field>
-        <Field label="Перший абзац">
+        <Field label={`${t.headingLabel}${enSuffix}`}>
+          <input name="heading_en" defaultValue={about?.heading_en} className={inputClass} />
+        </Field>
+        <Field label={`${t.paragraph1Label}${ukSuffix}`}>
           <textarea
             name="paragraph_1"
             defaultValue={about?.paragraph_1}
@@ -42,7 +55,15 @@ export default async function AboutAdminPage() {
             className={inputClass}
           />
         </Field>
-        <Field label="Другий абзац">
+        <Field label={`${t.paragraph1Label}${enSuffix}`}>
+          <textarea
+            name="paragraph_1_en"
+            defaultValue={about?.paragraph_1_en}
+            rows={3}
+            className={inputClass}
+          />
+        </Field>
+        <Field label={`${t.paragraph2Label}${ukSuffix}`}>
           <textarea
             name="paragraph_2"
             defaultValue={about?.paragraph_2}
@@ -50,19 +71,27 @@ export default async function AboutAdminPage() {
             className={inputClass}
           />
         </Field>
-        <SaveButton />
+        <Field label={`${t.paragraph2Label}${enSuffix}`}>
+          <textarea
+            name="paragraph_2_en"
+            defaultValue={about?.paragraph_2_en}
+            rows={3}
+            className={inputClass}
+          />
+        </Field>
+        <SaveButton locale={locale} />
       </form>
 
       <div>
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-lg font-bold text-white">Показники</h2>
+          <h2 className="font-heading text-lg font-bold text-white">{t.statsHeading}</h2>
           <form action={addAboutStat}>
             <button
               type="submit"
               className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
             >
               <Plus className="h-3.5 w-3.5" />
-              Додати
+              {t.addButton}
             </button>
           </form>
         </div>
@@ -76,41 +105,57 @@ export default async function AboutAdminPage() {
                   onDown={moveAboutStat.bind(null, stat.id, "down")}
                   disableUp={i === 0}
                   disableDown={i === stats.length - 1}
+                  locale={locale}
                 />
               </div>
 
               <form
                 action={updateAboutStat.bind(null, stat.id)}
-                className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-[10rem_6rem_1fr]"
+                className="flex-1 space-y-3"
               >
-                <IconPicker name="icon" defaultValue={stat.icon} />
-                <input
-                  name="number_text"
-                  defaultValue={stat.number_text}
-                  className={inputClass}
-                  placeholder="10+"
-                />
-                <input
-                  name="label_text"
-                  defaultValue={stat.label_text}
-                  className={inputClass}
-                  placeholder="Опис показника"
-                />
-                <div className="sm:col-span-3">
-                  <SaveButton />
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-[10rem_6rem_1fr]">
+                  <IconPicker name="icon" defaultValue={stat.icon} locale={locale} />
+                  <input
+                    name="number_text"
+                    defaultValue={stat.number_text}
+                    className={inputClass}
+                    placeholder={`${t.numberPlaceholder}${ukSuffix}`}
+                  />
+                  <input
+                    name="label_text"
+                    defaultValue={stat.label_text}
+                    className={inputClass}
+                    placeholder={`${t.labelPlaceholder}${ukSuffix}`}
+                  />
                 </div>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:pl-[calc(10rem+0.75rem)]">
+                  <input
+                    name="number_text_en"
+                    defaultValue={stat.number_text_en}
+                    className={inputClass}
+                    placeholder={`${t.numberPlaceholder}${enSuffix}`}
+                  />
+                  <input
+                    name="label_text_en"
+                    defaultValue={stat.label_text_en}
+                    className={inputClass}
+                    placeholder={`${t.labelPlaceholder}${enSuffix}`}
+                  />
+                </div>
+                <SaveButton locale={locale} />
               </form>
 
               <div className="flex flex-col items-center gap-2">
                 <VisibilityToggle
                   isVisible={stat.is_visible}
                   action={toggleAboutStat.bind(null, stat.id, stat.is_visible)}
+                  locale={locale}
                 />
                 <form action={deleteAboutStat}>
                   <input type="hidden" name="id" value={stat.id} />
                   <ConfirmSubmitButton
                     label={<Trash2 className="h-4 w-4" />}
-                    confirmText="Видалити цей показник?"
+                    confirmText={t.deleteStatConfirm}
                     className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
                   />
                 </form>
@@ -120,7 +165,7 @@ export default async function AboutAdminPage() {
 
           {stats.length === 0 && (
             <p className="rounded-none border border-dashed border-ink-border p-6 text-center text-sm text-white/40">
-              Ще немає жодного показника. Натисніть &quot;Додати&quot;.
+              {t.emptyStats}
             </p>
           )}
         </div>

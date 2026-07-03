@@ -2,22 +2,27 @@
 
 import { useTransition } from "react";
 import { CheckCircle2, Circle } from "lucide-react";
+import type { Locale } from "@/lib/i18n/locale";
+import { dictionaries } from "@/lib/i18n/dictionary";
 
 export function ReadToggle({
   isRead,
   action,
+  locale = "uk",
 }: {
   isRead: boolean;
   action: (formData: FormData) => Promise<void>;
+  locale?: Locale;
 }) {
   const [isPending, startTransition] = useTransition();
+  const dict = dictionaries[locale].admin.leads;
 
   return (
     <form action={(formData) => startTransition(() => action(formData))}>
       <button
         type="submit"
         disabled={isPending}
-        title={isRead ? "Позначити як непрочитане" : "Позначити як прочитане"}
+        title={isRead ? dict.markUnread : dict.markRead}
         className={`flex h-8 w-8 items-center justify-center rounded-none border transition-colors disabled:opacity-50 ${
           isRead
             ? "border-white/10 text-white/30 hover:bg-white/5"

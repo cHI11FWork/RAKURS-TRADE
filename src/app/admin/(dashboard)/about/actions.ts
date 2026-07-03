@@ -15,8 +15,11 @@ export async function updateAboutContent(formData: FormData) {
     .from("about_content")
     .update({
       heading: String(formData.get("heading") ?? ""),
+      heading_en: String(formData.get("heading_en") ?? ""),
       paragraph_1: String(formData.get("paragraph_1") ?? ""),
+      paragraph_1_en: String(formData.get("paragraph_1_en") ?? ""),
       paragraph_2: String(formData.get("paragraph_2") ?? ""),
+      paragraph_2_en: String(formData.get("paragraph_2_en") ?? ""),
     })
     .eq("id", 1);
   refresh();
@@ -47,7 +50,9 @@ export async function updateAboutStat(id: string, formData: FormData) {
     .update({
       icon: String(formData.get("icon") ?? "calendar"),
       number_text: String(formData.get("number_text") ?? ""),
+      number_text_en: String(formData.get("number_text_en") ?? ""),
       label_text: String(formData.get("label_text") ?? ""),
+      label_text_en: String(formData.get("label_text_en") ?? ""),
     })
     .eq("id", id);
   refresh();

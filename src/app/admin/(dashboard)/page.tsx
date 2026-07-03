@@ -1,56 +1,31 @@
 import Link from "next/link";
 import { Zap, Layers, Building2, Settings, Inbox } from "lucide-react";
 import { getUnreadLeadsCount } from "@/lib/admin-data";
-
-const CARDS = [
-  {
-    href: "/admin/hero",
-    label: "Головний банер",
-    desc: "Заголовок, підзаголовок, кнопка та переваги на першому екрані",
-    icon: Zap,
-  },
-  {
-    href: "/admin/directions",
-    label: "Наші напрями",
-    desc: "Картки послуг, списки та зображення",
-    icon: Layers,
-  },
-  {
-    href: "/admin/about",
-    label: "Про компанію",
-    desc: "Текст про компанію та показники (10+ років тощо)",
-    icon: Building2,
-  },
-  {
-    href: "/admin/settings",
-    label: "Контакти та соцмережі",
-    desc: "Телефон, email, адреса, Telegram/WhatsApp/LinkedIn",
-    icon: Settings,
-  },
-  {
-    href: "/admin/leads",
-    label: "Заявки з сайту",
-    desc: "Повідомлення, надіслані через форму контактів",
-    icon: Inbox,
-  },
-];
+import { getServerLocale } from "@/lib/i18n/server";
+import { dictionaries } from "@/lib/i18n/dictionary";
 
 export default async function AdminHome() {
-  const unread = await getUnreadLeadsCount();
+  const [unread, locale] = await Promise.all([getUnreadLeadsCount(), getServerLocale()]);
+  const t = dictionaries[locale].admin.overview;
+
+  const CARDS = [
+    { href: "/admin/hero", ...t.cards.hero, icon: Zap },
+    { href: "/admin/directions", ...t.cards.directions, icon: Layers },
+    { href: "/admin/about", ...t.cards.about, icon: Building2 },
+    { href: "/admin/settings", ...t.cards.settings, icon: Settings },
+    { href: "/admin/leads", ...t.cards.leads, icon: Inbox },
+  ];
 
   return (
     <div>
-      <h1 className="font-heading text-2xl font-extrabold text-white">Огляд</h1>
-      <p className="mt-1 text-sm text-white/50">
-        Керуйте вмістом сайту RAKURS TRADE. Усі зміни з&apos;являються на сайті одразу після
-        збереження.
-      </p>
+      <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
+      <p className="mt-1 text-sm text-white/50">{t.subtitle}</p>
 
       {unread > 0 && (
         <div className="mt-6 rounded-none border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand">
-          У вас {unread} нових заявок з форми контактів.{" "}
+          {t.newLeadsPrefix} {unread} {t.newLeadsSuffix}{" "}
           <Link href="/admin/leads" className="font-bold underline">
-            Переглянути
+            {t.viewLink}
           </Link>
         </div>
       )}

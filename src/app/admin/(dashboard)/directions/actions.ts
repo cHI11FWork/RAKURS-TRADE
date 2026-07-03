@@ -35,7 +35,9 @@ export async function updateDirection(id: string, formData: FormData) {
     .update({
       icon: String(formData.get("icon") ?? "bolt"),
       title: String(formData.get("title") ?? ""),
+      title_en: String(formData.get("title_en") ?? ""),
       button_text: String(formData.get("button_text") ?? ""),
+      button_text_en: String(formData.get("button_text_en") ?? ""),
       button_link: String(formData.get("button_link") ?? "#contacts"),
       image_url: String(formData.get("image_url") ?? "") || null,
       enable_lightning_effect: formData.get("enable_lightning_effect") === "on",
@@ -86,7 +88,10 @@ export async function updateDirectionItem(id: string, formData: FormData) {
   const supabase = await createClient();
   await supabase
     .from("direction_items")
-    .update({ text: String(formData.get("text") ?? "") })
+    .update({
+      text: String(formData.get("text") ?? ""),
+      text_en: String(formData.get("text_en") ?? ""),
+    })
     .eq("id", id);
   refresh();
 }

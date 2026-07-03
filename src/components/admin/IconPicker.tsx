@@ -1,26 +1,24 @@
 import { ICON_OPTIONS } from "@/lib/icons";
 import { inputClass } from "./Field";
+import type { Locale } from "@/lib/i18n/locale";
+import { dictionaries } from "@/lib/i18n/dictionary";
 
-const LABELS: Record<string, string> = {
-  shield: "Щит (надійність)",
-  gear: "Шестерня (експертиза)",
-  trophy: "Кубок (якість)",
-  "map-pin": "Мітка на карті",
-  bolt: "Блискавка (енергія)",
-  "shield-lightning": "Щит з блискавкою",
-  crosshair: "Приціл (Defense)",
-  calendar: "Календар",
-  building: "Будівля",
-  users: "Люди",
-  "shield-check": "Щит з галочкою",
-};
+export function IconPicker({
+  name,
+  defaultValue,
+  locale = "uk",
+}: {
+  name: string;
+  defaultValue: string;
+  locale?: Locale;
+}) {
+  const labels = dictionaries[locale].admin.iconPicker;
 
-export function IconPicker({ name, defaultValue }: { name: string; defaultValue: string }) {
   return (
     <select name={name} defaultValue={defaultValue} className={inputClass}>
       {ICON_OPTIONS.map((icon) => (
         <option key={icon} value={icon}>
-          {LABELS[icon] ?? icon}
+          {labels[icon as keyof typeof labels] ?? icon}
         </option>
       ))}
     </select>

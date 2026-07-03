@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Zap,
@@ -13,26 +13,55 @@ import {
   LogOut,
 } from "lucide-react";
 import { signOut } from "@/app/admin/actions";
+import { LOCALE_COOKIE, type Locale } from "@/lib/i18n/locale";
+import { dictionaries } from "@/lib/i18n/dictionary";
 
-const NAV = [
-  { href: "/admin", label: "Огляд", icon: LayoutDashboard, exact: true },
-  { href: "/admin/hero", label: "Головний банер", icon: Zap },
-  { href: "/admin/directions", label: "Напрями", icon: Layers },
-  { href: "/admin/about", label: "Про компанію", icon: Building2 },
-  { href: "/admin/settings", label: "Контакти та соцмережі", icon: Settings },
-  { href: "/admin/leads", label: "Заявки", icon: Inbox },
-];
-
-export function Sidebar({ unreadCount, email }: { unreadCount: number; email: string }) {
+export function Sidebar({
+  unreadCount,
+  email,
+  locale,
+}: {
+  unreadCount: number;
+  email: string;
+  locale: Locale;
+}) {
   const pathname = usePathname();
+  const router = useRouter();
+  const dict = dictionaries[locale];
+
+  const NAV = [
+    { href: "/admin", label: dict.admin.sidebar.nav.overview, icon: LayoutDashboard, exact: true },
+    { href: "/admin/hero", label: dict.admin.sidebar.nav.hero, icon: Zap },
+    { href: "/admin/directions", label: dict.admin.sidebar.nav.directions, icon: Layers },
+    { href: "/admin/about", label: dict.admin.sidebar.nav.about, icon: Building2 },
+    { href: "/admin/settings", label: dict.admin.sidebar.nav.settings, icon: Settings },
+    { href: "/admin/leads", label: dict.admin.sidebar.nav.leads, icon: Inbox },
+  ];
+
+  function toggleLocale() {
+    const next: Locale = locale === "uk" ? "en" : "uk";
+    document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; SameSite=Lax`;
+    router.refresh();
+  }
 
   return (
     <aside className="flex w-full shrink-0 flex-col border-b border-ink-border bg-ink-soft lg:h-screen lg:w-64 lg:border-b-0 lg:border-r">
       <div className="px-5 py-6">
-        <p className="font-heading text-sm font-extrabold tracking-wide text-white">
-          RAKURS <span className="text-brand">TRADE</span>
-        </p>
-        <p className="mt-0.5 text-xs text-white/40">Адмін-панель</p>
+        <div className="flex items-center justify-between">
+          <p className="font-heading text-sm font-extrabold tracking-wide text-white">
+            RAKURS <span className="text-brand">TRADE</span>
+          </p>
+          <button
+            onClick={toggleLocale}
+            className="flex items-center gap-1 text-xs font-bold tracking-wide text-white/90"
+            aria-label={dict.admin.common.langToggleAria}
+          >
+            <span className={locale === "uk" ? "text-brand" : "text-white/50"}>UA</span>
+            <span className="text-white/30">|</span>
+            <span className={locale === "en" ? "text-brand" : "text-white/50"}>EN</span>
+          </button>
+        </div>
+        <p className="mt-0.5 text-xs text-white/40">{dict.admin.sidebar.panelLabel}</p>
       </div>
 
       <nav className="flex-1 space-y-1 px-3">
@@ -69,7 +98,7 @@ export function Sidebar({ unreadCount, email }: { unreadCount: number; email: st
           className="flex items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-white"
         >
           <ExternalLink className="h-4 w-4" />
-          Переглянути сайт
+          {dict.admin.sidebar.viewSite}
         </a>
         <p className="truncate px-3 text-xs text-white/30">{email}</p>
         <form action={signOut}>
@@ -78,7 +107,7 @@ export function Sidebar({ unreadCount, email }: { unreadCount: number; email: st
             className="flex w-full items-center gap-2.5 rounded-none px-3 py-2.5 text-sm text-white/60 hover:bg-white/5 hover:text-red-400"
           >
             <LogOut className="h-4 w-4" />
-            Вийти
+            {dict.admin.sidebar.logout}
           </button>
         </form>
       </div>

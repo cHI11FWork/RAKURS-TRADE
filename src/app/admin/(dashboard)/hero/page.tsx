@@ -7,6 +7,8 @@ import { VisibilityToggle } from "@/components/admin/VisibilityToggle";
 import { SortButtons } from "@/components/admin/SortButtons";
 import { IconPicker } from "@/components/admin/IconPicker";
 import { ImageUploader } from "@/components/admin/ImageUploader";
+import { getServerLocale } from "@/lib/i18n/server";
+import { dictionaries } from "@/lib/i18n/dictionary";
 import {
   addHeroFeature,
   deleteHeroFeature,
@@ -19,19 +21,25 @@ import {
 export const metadata = { title: "Головний банер — RAKURS TRADE" };
 
 export default async function HeroAdminPage() {
-  const [hero, features] = await Promise.all([getHeroAdmin(), getHeroFeaturesAdmin()]);
+  const [hero, features, locale] = await Promise.all([
+    getHeroAdmin(),
+    getHeroFeaturesAdmin(),
+    getServerLocale(),
+  ]);
+  const dict = dictionaries[locale].admin;
+  const t = dict.hero;
+  const ukSuffix = dict.common.contentUkSuffix;
+  const enSuffix = dict.common.contentEnSuffix;
 
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="font-heading text-2xl font-extrabold text-white">Головний банер</h1>
-        <p className="mt-1 text-sm text-white/50">
-          Перший екран сайту: заголовок, опис, кнопка та фонове зображення.
-        </p>
+        <h1 className="font-heading text-2xl font-extrabold text-white">{t.title}</h1>
+        <p className="mt-1 text-sm text-white/50">{t.subtitle}</p>
       </div>
 
       <form action={updateHero} className="space-y-4 rounded-none border border-ink-border bg-ink-card p-6">
-        <Field label="Заголовок (основна частина)" hint="Виводиться білим кольором">
+        <Field label={`${t.titleMainLabel}${ukSuffix}`} hint={t.titleMainHint}>
           <textarea
             name="title_main"
             defaultValue={hero?.title_main}
@@ -39,7 +47,15 @@ export default async function HeroAdminPage() {
             className={inputClass}
           />
         </Field>
-        <Field label="Заголовок (виділена частина)" hint="Виводиться жовтим кольором, продовжує основний заголовок">
+        <Field label={`${t.titleMainLabel}${enSuffix}`}>
+          <textarea
+            name="title_main_en"
+            defaultValue={hero?.title_main_en}
+            rows={3}
+            className={inputClass}
+          />
+        </Field>
+        <Field label={`${t.titleHighlightLabel}${ukSuffix}`} hint={t.titleHighlightHint}>
           <textarea
             name="title_highlight"
             defaultValue={hero?.title_highlight}
@@ -47,7 +63,15 @@ export default async function HeroAdminPage() {
             className={inputClass}
           />
         </Field>
-        <Field label="Підзаголовок">
+        <Field label={`${t.titleHighlightLabel}${enSuffix}`}>
+          <textarea
+            name="title_highlight_en"
+            defaultValue={hero?.title_highlight_en}
+            rows={2}
+            className={inputClass}
+          />
+        </Field>
+        <Field label={`${t.subtitleLabel}${ukSuffix}`}>
           <textarea
             name="subtitle"
             defaultValue={hero?.subtitle}
@@ -55,39 +79,46 @@ export default async function HeroAdminPage() {
             className={inputClass}
           />
         </Field>
+        <Field label={`${t.subtitleLabel}${enSuffix}`}>
+          <textarea
+            name="subtitle_en"
+            defaultValue={hero?.subtitle_en}
+            rows={3}
+            className={inputClass}
+          />
+        </Field>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <Field label="Текст кнопки">
+          <Field label={`${t.ctaTextLabel}${ukSuffix}`}>
             <input name="cta_text" defaultValue={hero?.cta_text} className={inputClass} />
           </Field>
-          <Field label="Посилання кнопки" hint="Наприклад #contacts або https://...">
-            <input name="cta_link" defaultValue={hero?.cta_link} className={inputClass} />
+          <Field label={`${t.ctaTextLabel}${enSuffix}`}>
+            <input name="cta_text_en" defaultValue={hero?.cta_text_en} className={inputClass} />
           </Field>
         </div>
-        <Field
-          label="Фонове зображення"
-          hint="Якщо не завантажити — використовується стандартна ілюстрація з ефектом вогників"
-        >
+        <Field label={t.ctaLinkLabel} hint={t.ctaLinkHint}>
+          <input name="cta_link" defaultValue={hero?.cta_link} className={inputClass} />
+        </Field>
+        <Field label={t.backgroundImageLabel} hint={t.backgroundImageHint}>
           <ImageUploader
             name="background_image_url"
             defaultUrl={hero?.background_image_url ?? null}
             folder="hero"
+            locale={locale}
           />
         </Field>
-        <SaveButton />
+        <SaveButton locale={locale} />
       </form>
 
       <div>
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-lg font-bold text-white">
-            Переваги під банером
-          </h2>
+          <h2 className="font-heading text-lg font-bold text-white">{t.featuresHeading}</h2>
           <form action={addHeroFeature}>
             <button
               type="submit"
               className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
             >
               <Plus className="h-3.5 w-3.5" />
-              Додати
+              {t.addButton}
             </button>
           </form>
         </div>
@@ -104,36 +135,57 @@ export default async function HeroAdminPage() {
                   onDown={moveHeroFeature.bind(null, feature.id, "down")}
                   disableUp={i === 0}
                   disableDown={i === features.length - 1}
+                  locale={locale}
                 />
               </div>
 
               <form
                 action={updateHeroFeature.bind(null, feature.id)}
-                className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-[10rem_1fr_1fr]"
+                className="flex-1 space-y-3"
               >
-                <IconPicker name="icon" defaultValue={feature.icon} />
-                <input name="title" defaultValue={feature.title} className={inputClass} placeholder="Заголовок" />
-                <input
-                  name="subtitle"
-                  defaultValue={feature.subtitle}
-                  className={inputClass}
-                  placeholder="Опис"
-                />
-                <div className="sm:col-span-3">
-                  <SaveButton label="Зберегти" />
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-[10rem_1fr_1fr]">
+                  <IconPicker name="icon" defaultValue={feature.icon} locale={locale} />
+                  <input
+                    name="title"
+                    defaultValue={feature.title}
+                    className={inputClass}
+                    placeholder={`${t.featureTitlePlaceholder}${ukSuffix}`}
+                  />
+                  <input
+                    name="subtitle"
+                    defaultValue={feature.subtitle}
+                    className={inputClass}
+                    placeholder={`${t.featureSubtitlePlaceholder}${ukSuffix}`}
+                  />
                 </div>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:pl-[calc(10rem+0.75rem)]">
+                  <input
+                    name="title_en"
+                    defaultValue={feature.title_en}
+                    className={inputClass}
+                    placeholder={`${t.featureTitlePlaceholder}${enSuffix}`}
+                  />
+                  <input
+                    name="subtitle_en"
+                    defaultValue={feature.subtitle_en}
+                    className={inputClass}
+                    placeholder={`${t.featureSubtitlePlaceholder}${enSuffix}`}
+                  />
+                </div>
+                <SaveButton label={dict.common.save} locale={locale} />
               </form>
 
               <div className="flex flex-col items-center gap-2">
                 <VisibilityToggle
                   isVisible={feature.is_visible}
                   action={toggleHeroFeature.bind(null, feature.id, feature.is_visible)}
+                  locale={locale}
                 />
                 <form action={deleteHeroFeature}>
                   <input type="hidden" name="id" value={feature.id} />
                   <ConfirmSubmitButton
                     label={<Trash2 className="h-4 w-4" />}
-                    confirmText="Видалити цю перевагу?"
+                    confirmText={t.deleteFeatureConfirm}
                     className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
                   />
                 </form>
@@ -143,7 +195,7 @@ export default async function HeroAdminPage() {
 
           {features.length === 0 && (
             <p className="rounded-none border border-dashed border-ink-border p-6 text-center text-sm text-white/40">
-              Ще немає жодної переваги. Натисніть &quot;Додати&quot;.
+              {t.emptyFeatures}
             </p>
           )}
         </div>

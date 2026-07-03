@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import type { DirectionWithItems } from "@/lib/supabase/types";
 import { AppIcon } from "@/lib/icons";
+import { useLocale } from "@/lib/i18n/LocaleContext";
+import { pick } from "@/lib/i18n/localize";
 
 const BOLT_D = "M18 3 6 18h7l-1 11 12-15h-7z";
 
@@ -20,7 +24,10 @@ export function DirectionCard({
   direction: DirectionWithItems;
   tiltIndex?: number;
 }) {
+  const { locale } = useLocale();
   const imageSrc = direction.image_url ?? DEFAULT_DIRECTION_IMAGES[direction.icon] ?? null;
+  const title = pick(direction.title, direction.title_en, locale);
+  const buttonText = pick(direction.button_text, direction.button_text_en, locale);
 
   return (
     <div
@@ -33,7 +40,7 @@ export function DirectionCard({
         {imageSrc ? (
           <Image
             src={imageSrc}
-            alt={direction.title}
+            alt={title}
             fill
             className={`object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${
               direction.enable_lightning_effect ? "lightning-photo" : ""
@@ -60,7 +67,7 @@ export function DirectionCard({
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-heading text-lg font-extrabold uppercase tracking-wide text-white">
-          {direction.title}
+          {title}
         </h3>
 
         {direction.items.length > 0 && (
@@ -68,7 +75,7 @@ export function DirectionCard({
             {direction.items.map((item) => (
               <li key={item.id} className="flex items-start gap-2.5 text-sm text-white/70">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                <span>{item.text}</span>
+                <span>{pick(item.text, item.text_en, locale)}</span>
               </li>
             ))}
           </ul>
@@ -78,7 +85,7 @@ export function DirectionCard({
           href={direction.button_link}
           className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-brand transition-colors hover:text-white"
         >
-          {direction.button_text}
+          {buttonText}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </a>
       </div>

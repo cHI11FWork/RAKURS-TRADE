@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { inputClass } from "@/components/admin/Field";
+import { useLocale } from "@/lib/i18n/LocaleContext";
 
 export function LoginForm() {
   const router = useRouter();
+  const { dict } = useLocale();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +24,7 @@ export function LoginForm() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-      setError("Невірний email або пароль.");
+      setError(dict.admin.login.invalidCreds);
       setLoading(false);
       return;
     }
@@ -41,13 +43,13 @@ export function LoginForm() {
           <Lock className="h-5 w-5 text-brand" />
         </div>
       </div>
-      <h1 className="text-center font-heading text-lg font-bold text-white">Вхід до адмінки</h1>
-      <p className="text-center text-sm text-white/50">RAKURS TRADE — керування сайтом</p>
+      <h1 className="text-center font-heading text-lg font-bold text-white">{dict.admin.login.title}</h1>
+      <p className="text-center text-sm text-white/50">{dict.admin.login.subtitle}</p>
 
       <input
         type="email"
         required
-        placeholder="Email"
+        placeholder={dict.admin.login.emailPlaceholder}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className={inputClass}
@@ -56,7 +58,7 @@ export function LoginForm() {
       <input
         type="password"
         required
-        placeholder="Пароль"
+        placeholder={dict.admin.login.passwordPlaceholder}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         className={inputClass}
@@ -71,7 +73,7 @@ export function LoginForm() {
         className="flex w-full items-center justify-center gap-2 rounded-none bg-brand px-5 py-3 text-sm font-bold uppercase tracking-wide text-ink transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-        Увійти
+        {dict.admin.login.submit}
       </button>
     </form>
   );

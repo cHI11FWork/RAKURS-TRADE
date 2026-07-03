@@ -1,7 +1,11 @@
+"use client";
+
 import type { AboutContent, AboutStat } from "@/lib/supabase/types";
 import { AppIcon } from "@/lib/icons";
 import { Reveal } from "./Reveal";
 import { CountUp } from "./CountUp";
+import { useLocale } from "@/lib/i18n/LocaleContext";
+import { pick } from "@/lib/i18n/localize";
 
 export function About({
   about,
@@ -10,7 +14,12 @@ export function About({
   about: AboutContent | null;
   stats: AboutStat[];
 }) {
+  const { locale } = useLocale();
   if (!about) return null;
+
+  const heading = pick(about.heading, about.heading_en, locale);
+  const paragraph1 = pick(about.paragraph_1, about.paragraph_1_en, locale);
+  const paragraph2 = pick(about.paragraph_2, about.paragraph_2_en, locale);
 
   return (
     <section id="about" className="bg-ink py-20 lg:py-28">
@@ -18,14 +27,10 @@ export function About({
         <Reveal>
           <div>
             <h2 className="font-heading text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl">
-              {about.heading}
+              {heading}
             </h2>
-            {about.paragraph_1 && (
-              <p className="mt-6 leading-relaxed text-white/70">{about.paragraph_1}</p>
-            )}
-            {about.paragraph_2 && (
-              <p className="mt-4 leading-relaxed text-white/70">{about.paragraph_2}</p>
-            )}
+            {paragraph1 && <p className="mt-6 leading-relaxed text-white/70">{paragraph1}</p>}
+            {paragraph2 && <p className="mt-4 leading-relaxed text-white/70">{paragraph2}</p>}
           </div>
         </Reveal>
 
@@ -36,10 +41,10 @@ export function About({
                 <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                   <AppIcon name={stat.icon} className="h-7 w-7 text-brand" />
                   <p className="mt-3 font-heading text-2xl font-extrabold text-white sm:text-3xl">
-                    <CountUp text={stat.number_text} />
+                    <CountUp text={pick(stat.number_text, stat.number_text_en, locale)} />
                   </p>
                   <p className="mt-1 max-w-[10rem] text-xs leading-snug text-white/55">
-                    {stat.label_text}
+                    {pick(stat.label_text, stat.label_text_en, locale)}
                   </p>
                 </div>
               </Reveal>

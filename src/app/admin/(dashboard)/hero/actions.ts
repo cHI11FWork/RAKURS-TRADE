@@ -15,9 +15,13 @@ export async function updateHero(formData: FormData) {
     .from("hero")
     .update({
       title_main: String(formData.get("title_main") ?? ""),
+      title_main_en: String(formData.get("title_main_en") ?? ""),
       title_highlight: String(formData.get("title_highlight") ?? ""),
+      title_highlight_en: String(formData.get("title_highlight_en") ?? ""),
       subtitle: String(formData.get("subtitle") ?? ""),
+      subtitle_en: String(formData.get("subtitle_en") ?? ""),
       cta_text: String(formData.get("cta_text") ?? ""),
+      cta_text_en: String(formData.get("cta_text_en") ?? ""),
       cta_link: String(formData.get("cta_link") ?? "#contacts"),
       background_image_url: String(formData.get("background_image_url") ?? "") || null,
     })
@@ -50,7 +54,9 @@ export async function updateHeroFeature(id: string, formData: FormData) {
     .update({
       icon: String(formData.get("icon") ?? "shield"),
       title: String(formData.get("title") ?? ""),
+      title_en: String(formData.get("title_en") ?? ""),
       subtitle: String(formData.get("subtitle") ?? ""),
+      subtitle_en: String(formData.get("subtitle_en") ?? ""),
     })
     .eq("id", id);
   refresh();

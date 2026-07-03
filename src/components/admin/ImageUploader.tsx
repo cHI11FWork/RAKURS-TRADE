@@ -3,20 +3,25 @@
 import { useRef, useState } from "react";
 import { ImagePlus, Loader2, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import type { Locale } from "@/lib/i18n/locale";
+import { dictionaries } from "@/lib/i18n/dictionary";
 
 export function ImageUploader({
   name,
   defaultUrl,
   folder,
+  locale = "uk",
 }: {
   name: string;
   defaultUrl: string | null;
   folder: string;
+  locale?: Locale;
 }) {
   const [url, setUrl] = useState(defaultUrl ?? "");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const dict = dictionaries[locale].admin.imageUploader;
 
   async function handleFile(file: File) {
     setUploading(true);
@@ -36,7 +41,7 @@ export function ImageUploader({
       const { data } = supabase.storage.from("media").getPublicUrl(path);
       setUrl(data.publicUrl);
     } catch {
-      setError("Не вдалося завантажити зображення. Спробуйте інший файл.");
+      setError(dict.uploadError);
     } finally {
       setUploading(false);
     }
@@ -54,7 +59,7 @@ export function ImageUploader({
             type="button"
             onClick={() => setUrl("")}
             className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-none bg-black/70 text-white hover:bg-black"
-            aria-label="Видалити зображення"
+            aria-label={dict.removeAria}
           >
             <X className="h-4 w-4" />
           </button>
@@ -72,7 +77,7 @@ export function ImageUploader({
             <ImagePlus className="h-6 w-6" />
           )}
           <span className="text-xs">
-            {uploading ? "Завантаження..." : "Натисніть, щоб завантажити зображення"}
+            {uploading ? dict.uploading : dict.clickToUpload}
           </span>
         </button>
       )}
