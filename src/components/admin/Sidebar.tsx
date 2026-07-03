@@ -90,7 +90,7 @@ export function Sidebar({
               }`}
             >
               <span className="flex items-center gap-2.5">
-                <Icon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
+                <Icon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_4px_rgba(245,179,1,0.6)]" />
                 {item.label}
               </span>
               {item.href === "/admin/leads" && unreadCount > 0 && (

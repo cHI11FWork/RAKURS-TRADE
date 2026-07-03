@@ -41,9 +41,9 @@ export default async function DirectionsAdminPage() {
         <form action={addDirection}>
           <button
             type="submit"
-            className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-2 text-xs font-bold uppercase tracking-wide text-brand transition-all hover:-translate-y-0.5 hover:bg-brand/10"
+            className="group flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-2 text-xs font-bold uppercase tracking-wide text-brand transition-all hover:-translate-y-0.5 hover:bg-brand/10"
           >
-            <Plus className="h-3.5 w-3.5" />
+            <Plus className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-90" />
             {t.addDirectionButton}
           </button>
         </form>
@@ -153,9 +153,9 @@ export default async function DirectionsAdminPage() {
                 <form action={addDirectionItem.bind(null, direction.id)}>
                   <button
                     type="submit"
-                    className="flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-brand transition-transform hover:-translate-y-0.5 hover:underline"
+                    className="group flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-brand transition-transform hover:-translate-y-0.5 hover:underline"
                   >
-                    <Plus className="h-3 w-3" />
+                    <Plus className="h-3 w-3 transition-transform duration-200 group-hover:rotate-90" />
                     {t.addItemButton}
                   </button>
                 </form>

@@ -381,34 +381,46 @@ body {
 @keyframes admin-fade-up {
   0% {
     opacity: 0;
-    transform: translateY(10px);
+    filter: brightness(0.3) blur(2px);
+  }
+  55% {
+    opacity: 1;
+  }
+  70% {
+    filter: brightness(1.35) blur(0);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    filter: brightness(1) blur(0);
   }
 }
 
 .admin-fade-up {
-  animation: admin-fade-up 0.5s cubic-bezier(0.16, 0.8, 0.24, 1) both;
+  animation: admin-fade-up 0.6s cubic-bezier(0.16, 0.8, 0.24, 1) both;
 }
 
 @keyframes admin-stagger-in {
   0% {
     opacity: 0;
-    transform: translateY(14px);
+    filter: brightness(0.35) saturate(0.6);
+  }
+  60% {
+    opacity: 1;
+  }
+  78% {
+    filter: brightness(1.3);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    filter: brightness(1) saturate(1);
   }
 }
 
 .admin-stagger-in {
-  animation: admin-stagger-in 0.45s cubic-bezier(0.16, 0.8, 0.24, 1) both;
+  animation: admin-stagger-in 0.5s cubic-bezier(0.16, 0.8, 0.24, 1) both;
 }
 
 .admin-card-hover {
+  position: relative;
+  overflow: hidden;
   transition:
     transform 0.25s cubic-bezier(0.16, 0.8, 0.24, 1),
     border-color 0.25s ease,
@@ -417,22 +429,68 @@ body {
 
 .admin-card-hover:hover {
   transform: translateY(-3px);
-  border-color: rgba(245, 179, 1, 0.35);
-  box-shadow: 0 12px 32px -14px rgba(245, 179, 1, 0.2);
+  border-color: rgba(245, 179, 1, 0.4);
+  box-shadow: 0 12px 32px -14px rgba(245, 179, 1, 0.22);
+}
+
+.admin-card-hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-brand), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.admin-card-hover:hover::after {
+  animation: admin-card-current 1s ease-in-out infinite;
+}
+
+@keyframes admin-card-current {
+  0% {
+    left: -30%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
 }
 
 @keyframes badge-pulse {
   0%,
+  88%,
   100% {
-    box-shadow: 0 0 0 0 rgba(245, 179, 1, 0.55);
+    opacity: 1;
+    box-shadow: 0 0 6px 1px rgba(245, 179, 1, 0.7);
   }
-  50% {
-    box-shadow: 0 0 0 5px rgba(245, 179, 1, 0);
+  90% {
+    opacity: 0.35;
+    box-shadow: none;
+  }
+  93% {
+    opacity: 1;
+    box-shadow: 0 0 10px 2px rgba(245, 179, 1, 0.9);
+  }
+  95% {
+    opacity: 0.5;
+  }
+  97% {
+    opacity: 1;
   }
 }
 
 .badge-pulse {
-  animation: badge-pulse 2s ease-in-out infinite;
+  animation: badge-pulse 3.2s ease-in-out infinite;
 }
 
 .admin-nav-link {
@@ -455,34 +513,57 @@ body {
   width: 3px;
   transform: translateY(-50%);
   background: var(--color-brand);
-  animation: admin-nav-bar-in 0.3s ease-out both;
+  animation: admin-nav-spark 0.45s ease-out both;
 }
 
-@keyframes admin-nav-bar-in {
+@keyframes admin-nav-spark {
   0% {
     height: 0;
     opacity: 0;
+    box-shadow: 0 0 0 0 rgba(245, 179, 1, 0);
+  }
+  45% {
+    height: 90%;
+    opacity: 1;
+    box-shadow: 0 0 14px 2px rgba(245, 179, 1, 0.9);
   }
   100% {
     height: 60%;
     opacity: 1;
+    box-shadow: 0 0 8px 1px rgba(245, 179, 1, 0.65);
   }
 }
 
 .admin-icon-btn {
   transition:
     transform 0.15s ease,
+    filter 0.2s ease,
     background-color 0.2s ease,
     color 0.2s ease,
     border-color 0.2s ease;
 }
 
 .admin-icon-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px rgba(245, 179, 1, 0.55));
 }
 
 .admin-icon-btn:active {
-  transform: scale(0.94);
+  transform: scale(0.92);
+}
+
+@keyframes admin-btn-charge {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 179, 1, 0);
+  }
+  50% {
+    box-shadow: 0 0 14px 1px rgba(245, 179, 1, 0.32);
+  }
+}
+
+.btn-charge {
+  animation: admin-btn-charge 2.6s ease-in-out infinite;
 }
 
 .reveal {

@@ -12,7 +12,7 @@ export function SaveButton({ label, locale = "uk" }: { label?: string; locale?: 
     <button
       type="submit"
       disabled={pending}
-      className="btn-shine inline-flex items-center gap-2 rounded-none bg-brand px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-ink transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+      className="btn-shine btn-charge inline-flex items-center gap-2 rounded-none bg-brand px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-ink transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
     >
       {pending ? dict.admin.common.saving : (label ?? dict.admin.common.save)}
     </button>

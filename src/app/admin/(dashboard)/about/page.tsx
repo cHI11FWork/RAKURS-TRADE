@@ -88,9 +88,9 @@ export default async function AboutAdminPage() {
           <form action={addAboutStat}>
             <button
               type="submit"
-              className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand transition-all hover:-translate-y-0.5 hover:bg-brand/10"
+              className="group flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand transition-all hover:-translate-y-0.5 hover:bg-brand/10"
             >
-              <Plus className="h-3.5 w-3.5" />
+              <Plus className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-90" />
               {t.addButton}
             </button>
           </form>

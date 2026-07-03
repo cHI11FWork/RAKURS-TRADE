@@ -38,7 +38,7 @@ export default async function AdminHome() {
             style={{ animationDelay: `${i * 60}ms` }}
             className="admin-card-hover admin-stagger-in group rounded-none border border-ink-border bg-ink-card p-5"
           >
-            <card.icon className="h-6 w-6 text-brand transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" />
+            <card.icon className="h-6 w-6 text-brand transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 group-hover:drop-shadow-[0_0_6px_rgba(245,179,1,0.6)]" />
             <p className="mt-3 font-heading text-sm font-bold text-white">{card.label}</p>
             <p className="mt-1 text-xs leading-relaxed text-white/50">{card.desc}</p>
           </Link>
