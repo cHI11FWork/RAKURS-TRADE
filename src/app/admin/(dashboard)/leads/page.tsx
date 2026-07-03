@@ -22,7 +22,7 @@ export default async function LeadsAdminPage() {
         {leads.map((lead) => (
           <div
             key={lead.id}
-            className={`rounded-xl border p-5 ${
+            className={`rounded-none border p-5 ${
               lead.is_read ? "border-ink-border bg-ink-card" : "border-brand/30 bg-brand/[0.04]"
             }`}
           >
@@ -44,7 +44,7 @@ export default async function LeadsAdminPage() {
                   <ConfirmSubmitButton
                     label={<Trash2 className="h-4 w-4" />}
                     confirmText="Видалити цю заявку?"
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-500/20 text-red-400 hover:bg-red-500/10"
+                    className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
                   />
                 </form>
               </div>
@@ -74,7 +74,7 @@ export default async function LeadsAdminPage() {
         ))}
 
         {leads.length === 0 && (
-          <p className="rounded-xl border border-dashed border-ink-border p-10 text-center text-sm text-white/40">
+          <p className="rounded-none border border-dashed border-ink-border p-10 text-center text-sm text-white/40">
             Заявок ще немає.
           </p>
         )}

@@ -32,9 +32,12 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="relative z-10 w-full max-w-sm space-y-4 border border-ink-border bg-ink-card/80 p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] backdrop-blur-sm"
+    >
       <div className="mb-2 flex justify-center">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/15 ring-1 ring-brand/30">
+        <div className="logo-glow-pulse flex h-12 w-12 items-center justify-center rounded-none bg-brand/15 ring-1 ring-brand/30">
           <Lock className="h-5 w-5 text-brand" />
         </div>
       </div>
@@ -65,7 +68,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-bold uppercase tracking-wide text-ink disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-2 rounded-none bg-brand px-5 py-3 text-sm font-bold uppercase tracking-wide text-ink transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {loading && <Loader2 className="h-4 w-4 animate-spin" />}
         Увійти

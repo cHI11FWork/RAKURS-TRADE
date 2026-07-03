@@ -37,7 +37,7 @@ export default async function DirectionsAdminPage() {
         <form action={addDirection}>
           <button
             type="submit"
-            className="flex items-center gap-1.5 rounded-lg border border-brand/30 px-3 py-2 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
+            className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-2 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
           >
             <Plus className="h-3.5 w-3.5" />
             Додати напрям
@@ -47,7 +47,7 @@ export default async function DirectionsAdminPage() {
 
       <div className="space-y-6">
         {directions.map((direction, i) => (
-          <div key={direction.id} className="rounded-xl border border-ink-border bg-ink-card p-6">
+          <div key={direction.id} className="rounded-none border border-ink-border bg-ink-card p-6">
             <div className="flex items-start gap-3">
               <SortButtons
                 onUp={moveDirection.bind(null, direction.id, "up")}
@@ -99,7 +99,7 @@ export default async function DirectionsAdminPage() {
                     type="checkbox"
                     name="enable_lightning_effect"
                     defaultChecked={direction.enable_lightning_effect}
-                    className="h-4 w-4 rounded border-ink-border accent-brand"
+                    className="h-4 w-4 rounded-none border-ink-border accent-brand"
                   />
                   <Zap className="h-4 w-4 text-brand" />
                   Анімація блискавки при наведенні на картку
@@ -118,7 +118,7 @@ export default async function DirectionsAdminPage() {
                   <ConfirmSubmitButton
                     label={<Trash2 className="h-4 w-4" />}
                     confirmText="Видалити цей напрям разом з усіма пунктами?"
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-500/20 text-red-400 hover:bg-red-500/10"
+                    className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
                   />
                 </form>
               </div>
@@ -165,7 +165,7 @@ export default async function DirectionsAdminPage() {
                       <ConfirmSubmitButton
                         label={<Trash2 className="h-4 w-4" />}
                         confirmText="Видалити цей пункт?"
-                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-500/20 text-red-400 hover:bg-red-500/10"
+                        className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
                       />
                     </form>
                   </div>
@@ -180,7 +180,7 @@ export default async function DirectionsAdminPage() {
         ))}
 
         {directions.length === 0 && (
-          <p className="rounded-xl border border-dashed border-ink-border p-8 text-center text-sm text-white/40">
+          <p className="rounded-none border border-dashed border-ink-border p-8 text-center text-sm text-white/40">
             Ще немає жодного напряму. Натисніть &quot;Додати напрям&quot;.
           </p>
         )}

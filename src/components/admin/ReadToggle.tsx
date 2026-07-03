@@ -18,7 +18,7 @@ export function ReadToggle({
         type="submit"
         disabled={isPending}
         title={isRead ? "Позначити як непрочитане" : "Позначити як прочитане"}
-        className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors disabled:opacity-50 ${
+        className={`flex h-8 w-8 items-center justify-center rounded-none border transition-colors disabled:opacity-50 ${
           isRead
             ? "border-white/10 text-white/30 hover:bg-white/5"
             : "border-brand/30 text-brand hover:bg-brand/10"

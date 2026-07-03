@@ -104,6 +104,10 @@ body {
   }
 }
 
+.drift-slow {
+  animation: drift 12s ease-in-out infinite;
+}
+
 @keyframes lightning-flash {
   0%,
   100% {
@@ -259,7 +263,8 @@ body {
   }
 }
 
-.logo-bolt-svg {
+.logo-bolt-svg,
+.logo-glow-pulse {
   animation: logo-glow-pulse 3.4s ease-in-out infinite;
 }
 

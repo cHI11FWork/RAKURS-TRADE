@@ -19,7 +19,7 @@ export default async function SettingsAdminPage() {
 
       <form
         action={updateSiteSettings}
-        className="space-y-4 rounded-xl border border-ink-border bg-ink-card p-6"
+        className="space-y-4 rounded-none border border-ink-border bg-ink-card p-6"
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label="Телефон">

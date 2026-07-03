@@ -29,7 +29,7 @@ export default async function AboutAdminPage() {
 
       <form
         action={updateAboutContent}
-        className="space-y-4 rounded-xl border border-ink-border bg-ink-card p-6"
+        className="space-y-4 rounded-none border border-ink-border bg-ink-card p-6"
       >
         <Field label="Заголовок секції">
           <input name="heading" defaultValue={about?.heading} className={inputClass} />
@@ -59,7 +59,7 @@ export default async function AboutAdminPage() {
           <form action={addAboutStat}>
             <button
               type="submit"
-              className="flex items-center gap-1.5 rounded-lg border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
+              className="flex items-center gap-1.5 rounded-none border border-brand/30 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand hover:bg-brand/10"
             >
               <Plus className="h-3.5 w-3.5" />
               Додати
@@ -69,7 +69,7 @@ export default async function AboutAdminPage() {
 
         <div className="mt-4 space-y-3">
           {stats.map((stat, i) => (
-            <div key={stat.id} className="flex gap-3 rounded-xl border border-ink-border bg-ink-card p-4">
+            <div key={stat.id} className="flex gap-3 rounded-none border border-ink-border bg-ink-card p-4">
               <div className="flex items-center">
                 <SortButtons
                   onUp={moveAboutStat.bind(null, stat.id, "up")}
@@ -111,7 +111,7 @@ export default async function AboutAdminPage() {
                   <ConfirmSubmitButton
                     label={<Trash2 className="h-4 w-4" />}
                     confirmText="Видалити цей показник?"
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-500/20 text-red-400 hover:bg-red-500/10"
+                    className="flex h-8 w-8 items-center justify-center rounded-none border border-red-500/20 text-red-400 hover:bg-red-500/10"
                   />
                 </form>
               </div>
@@ -119,7 +119,7 @@ export default async function AboutAdminPage() {
           ))}
 
           {stats.length === 0 && (
-            <p className="rounded-xl border border-dashed border-ink-border p-6 text-center text-sm text-white/40">
+            <p className="rounded-none border border-dashed border-ink-border p-6 text-center text-sm text-white/40">
               Ще немає жодного показника. Натисніть &quot;Додати&quot;.
             </p>
           )}

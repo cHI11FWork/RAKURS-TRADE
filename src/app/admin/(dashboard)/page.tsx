@@ -47,7 +47,7 @@ export default async function AdminHome() {
       </p>
 
       {unread > 0 && (
-        <div className="mt-6 rounded-lg border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand">
+        <div className="mt-6 rounded-none border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand">
           У вас {unread} нових заявок з форми контактів.{" "}
           <Link href="/admin/leads" className="font-bold underline">
             Переглянути
@@ -60,7 +60,7 @@ export default async function AdminHome() {
           <Link
             key={card.href}
             href={card.href}
-            className="rounded-xl border border-ink-border bg-ink-card p-5 transition-colors hover:border-brand/40"
+            className="rounded-none border border-ink-border bg-ink-card p-5 transition-colors hover:border-brand/40"
           >
             <card.icon className="h-6 w-6 text-brand" />
             <p className="mt-3 font-heading text-sm font-bold text-white">{card.label}</p>
