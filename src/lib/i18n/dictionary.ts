@@ -4,7 +4,7 @@ const uk = {
   meta: {
     title: "RAKURS TRADE — Інженерні рішення для енергозабезпечення та блискавозахисту",
     description:
-      "Проєктуємо, постачаємо та впроваджуємо комплексні інженерні рішення для промисловості, телекомунікаційної галузі, паливно-енергетичного сектору, об'єктів критичної інфраструктури та Defense & Security.",
+      "Українська інженерна компанія: автономне енергозабезпечення, блискавозахист, заземлення та рішення для критичної інфраструктури й Defense & Security по всій Україні.",
   },
   site: {
     nav: {
@@ -192,7 +192,7 @@ const en: typeof uk = {
   meta: {
     title: "RAKURS TRADE — Engineering solutions for power supply and lightning protection",
     description:
-      "We design, supply and implement comprehensive engineering solutions for industry, telecommunications, the fuel and energy sector, critical infrastructure facilities, and Defense & Security.",
+      "Ukrainian engineering company: autonomous power supply, lightning protection, grounding and critical infrastructure solutions for Defense & Security, nationwide.",
   },
   site: {
     nav: {
