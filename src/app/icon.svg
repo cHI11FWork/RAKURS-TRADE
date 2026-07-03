@@ -10,7 +10,9 @@
       <stop offset="1" stop-color="#c98a00"/>
     </linearGradient>
     <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="1.6" result="blur"/>
+      <feGaussianBlur stdDeviation="1.6" result="blur">
+        <animate attributeName="stdDeviation" values="1.2;2.6;1.2" dur="3.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+      </feGaussianBlur>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -19,7 +21,9 @@
   </defs>
 
   <rect width="32" height="32" rx="8" fill="url(#bg)"/>
-  <rect x="0.75" y="0.75" width="30.5" height="30.5" rx="7.25" fill="none" stroke="#f5b301" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="0.75" y="0.75" width="30.5" height="30.5" rx="7.25" fill="none" stroke="#f5b301" stroke-width="1">
+    <animate attributeName="stroke-opacity" values="0.25;0.55;0.25" dur="3.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </rect>
 
   <g transform="translate(4,4)" filter="url(#glow)">
     <path
