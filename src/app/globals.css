@@ -126,17 +126,17 @@ body {
 }
 
 .lightning-card .lightning-bolt-path {
-  stroke-dasharray: 460;
-  stroke-dashoffset: 460;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
   opacity: 0;
-  filter: drop-shadow(0 0 8px rgba(191, 233, 255, 0.95)) drop-shadow(0 0 20px rgba(245, 179, 1, 0.6));
+  filter: drop-shadow(0 0 6px rgba(191, 233, 255, 0.95)) drop-shadow(0 0 16px rgba(245, 179, 1, 0.6));
 }
 
 .lightning-card .lightning-branch {
-  stroke-dasharray: 140;
-  stroke-dashoffset: 140;
+  stroke-dasharray: 110;
+  stroke-dashoffset: 110;
   opacity: 0;
-  filter: drop-shadow(0 0 5px rgba(191, 233, 255, 0.9));
+  filter: drop-shadow(0 0 4px rgba(191, 233, 255, 0.9));
 }
 
 .lightning-card:hover .lightning-bolt-path,
@@ -181,7 +181,7 @@ body {
 
 @keyframes bolt-draw {
   from {
-    stroke-dashoffset: 460;
+    stroke-dashoffset: 220;
     opacity: 1;
   }
   to {
@@ -192,7 +192,7 @@ body {
 
 @keyframes branch-draw {
   from {
-    stroke-dashoffset: 140;
+    stroke-dashoffset: 110;
     opacity: 1;
   }
   to {

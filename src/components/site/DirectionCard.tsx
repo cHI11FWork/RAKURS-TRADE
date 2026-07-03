@@ -76,28 +76,28 @@ export function DirectionCard({
               <g filter={`url(#${glowId})`}>
                 <path
                   className="lightning-branch lightning-branch-a"
-                  d="M92 82 L46 100 L64 96 L36 132"
-                  stroke="#bfe9ff"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
+                  d="M116 94 L78 112 L92 108 L58 138"
+                  stroke="#dff2ff"
+                  strokeWidth="1.6"
+                  strokeLinejoin="miter"
+                  strokeLinecap="butt"
                 />
                 <path
                   className="lightning-branch lightning-branch-b"
-                  d="M104 66 L152 42 L128 48 L162 18"
-                  stroke="#bfe9ff"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
+                  d="M134 48 L166 30 L150 34 L172 8"
+                  stroke="#dff2ff"
+                  strokeWidth="1.6"
+                  strokeLinejoin="miter"
+                  strokeLinecap="butt"
                 />
                 <path
                   className="lightning-bolt-path"
-                  d="M108 8 L60 82 L92 82 L74 152 L142 66 L104 66 Z"
+                  d="M140 6 L118 48 L134 48 L102 94 L116 94 L82 150"
                   stroke="#ffffff"
-                  strokeWidth="3.5"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  fill="rgba(191,233,255,0.2)"
+                  strokeWidth="2.4"
+                  strokeLinejoin="miter"
+                  strokeLinecap="butt"
+                  fill="none"
                 />
               </g>
             </svg>
