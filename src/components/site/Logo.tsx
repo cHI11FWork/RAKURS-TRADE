@@ -9,7 +9,7 @@ export function Logo({ className }: { className?: string }) {
       </span>
       <span className="leading-none">
         <span className="block font-heading text-lg font-extrabold tracking-wide text-white">RAKURS</span>
-        <span className="block font-heading text-[11px] font-medium tracking-[0.35em] text-brand">TRADE</span>
+        <span className="block font-heading text-[11px] font-medium tracking-[12.84px] text-brand">TRADE</span>
       </span>
     </Link>
   );
