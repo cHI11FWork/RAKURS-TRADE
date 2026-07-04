@@ -51,7 +51,11 @@ export function Hero({ hero, features }: { hero: HeroType | null; features: Hero
             )}
           </div>
 
-          <Reveal y={28} delay={150} className="mt-14 hidden shrink-0 lg:mt-0 lg:block lg:w-[300px] xl:w-[340px]">
+          <Reveal
+            y={28}
+            delay={150}
+            className="mx-auto mt-12 w-full max-w-[260px] shrink-0 sm:max-w-[300px] lg:mx-0 lg:mt-0 lg:w-[300px] lg:max-w-none xl:w-[340px]"
+          >
             <HeroGenerator />
           </Reveal>
         </div>
