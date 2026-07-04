@@ -7,8 +7,6 @@ import { AppIcon } from "@/lib/icons";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 import { pick } from "@/lib/i18n/localize";
 
-const BOLT_D = "M18 3 6 18h7l-1 11 12-15h-7z";
-
 const DEFAULT_DIRECTION_IMAGES: Record<string, string> = {
   bolt: "/images/direction-power.jpg",
   "shield-lightning": "/images/direction-lightning.jpg",
@@ -60,9 +58,7 @@ export function DirectionCard({
       <div className="relative z-10 flex h-40 shrink-0 items-start p-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-none border border-brand/40 bg-black/35 backdrop-blur-sm">
           {direction.icon === "bolt" ? (
-            <svg viewBox="0 0 32 32" className="h-6 w-6 shrink-0" aria-hidden="true">
-              <path d={BOLT_D} fill="#f5b301" transform="translate(1,0)" />
-            </svg>
+            <Image src="/images/logo-bolt.png" alt="" width={24} height={29} className="h-6 w-auto shrink-0" />
           ) : (
             <AppIcon name={direction.icon} className="h-6 w-6 shrink-0 text-brand" />
           )}

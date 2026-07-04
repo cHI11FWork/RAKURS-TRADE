@@ -1,9 +1,15 @@
+import { readFileSync } from "fs";
+import { join } from "path";
 import { ImageResponse } from "next/og";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 export default function AppleIcon() {
+  const boltPath = join(process.cwd(), "public", "images", "logo-bolt.png");
+  const boltBase64 = readFileSync(boltPath).toString("base64");
+  const boltSrc = `data:image/png;base64,${boltBase64}`;
+
   return new ImageResponse(
     (
       <div
@@ -16,15 +22,8 @@ export default function AppleIcon() {
           background: "#0a0b0e",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            width: 88,
-            height: 110,
-            background: "#f5b301",
-            clipPath: "polygon(67% 0%, 0% 58%, 39% 58%, 33% 100%, 100% 42%, 61% 42%)",
-          }}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={boltSrc} width={120} height={145} alt="" />
       </div>
     ),
     { ...size }
