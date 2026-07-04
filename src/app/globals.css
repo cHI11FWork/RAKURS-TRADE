@@ -415,6 +415,77 @@ body {
   animation: logo-text-glow-strike 0.7s ease-out;
 }
 
+/* Hero generator illustration: idle "running" life — breathing vent glow,
+   a status LED blink, rising heat-shimmer wisps, and an ambient sheen pass. */
+@keyframes generator-vent-glow {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.generator-vent-glow {
+  animation: generator-vent-glow 4.2s ease-in-out infinite;
+}
+
+@keyframes generator-led-blink {
+  0%,
+  92%,
+  100% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.12;
+  }
+}
+
+.generator-led {
+  animation: generator-led-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes generator-steam-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-30px) scale(1.7);
+    opacity: 0;
+  }
+}
+
+.generator-steam {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: generator-steam-rise 4.6s ease-in-out infinite;
+}
+
+@keyframes generator-shine-pan {
+  0%,
+  70% {
+    background-position: 130% 130%;
+  }
+  85% {
+    background-position: -30% -30%;
+  }
+  100% {
+    background-position: -30% -30%;
+  }
+}
+
+.generator-shine-sweep {
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.12) 50%, transparent 58%);
+  background-size: 260% 260%;
+  background-position: 130% 130%;
+  animation: generator-shine-pan 9s ease-in-out infinite;
+}
+
 @keyframes login-card-in {
   0% {
     opacity: 0;
