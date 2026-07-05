@@ -13,15 +13,7 @@ const DEFAULT_DIRECTION_IMAGES: Record<string, string> = {
   crosshair: "/images/direction-defense.jpg",
 };
 
-const TILT_CLASSES = ["lg:rotate-[-1.5deg]", "lg:rotate-0", "lg:rotate-[1.5deg]"];
-
-export function DirectionCard({
-  direction,
-  tiltIndex = 1,
-}: {
-  direction: DirectionWithItems;
-  tiltIndex?: number;
-}) {
+export function DirectionCard({ direction }: { direction: DirectionWithItems }) {
   const { locale } = useLocale();
   const imageSrc = direction.image_url ?? DEFAULT_DIRECTION_IMAGES[direction.icon] ?? null;
   const title = pick(direction.title, direction.title_en, locale);
@@ -29,9 +21,9 @@ export function DirectionCard({
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-none border border-ink-border transition-transform duration-300 ease-out hover:-translate-y-2 hover:rotate-0 hover:scale-[1.015] ${
-        TILT_CLASSES[tiltIndex % 3]
-      } ${direction.enable_lightning_effect ? "lightning-card" : ""}`}
+      className={`group relative flex flex-col overflow-hidden rounded-none border border-ink-border transition-transform duration-300 ease-out hover:-translate-y-2 hover:scale-[1.015] ${
+        direction.enable_lightning_effect ? "lightning-card" : ""
+      }`}
       tabIndex={direction.enable_lightning_effect ? 0 : undefined}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-ink-soft to-black">
