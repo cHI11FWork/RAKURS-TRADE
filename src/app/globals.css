@@ -486,6 +486,29 @@ body {
   animation: generator-shine-pan 9s ease-in-out infinite;
 }
 
+@keyframes generator-shine-burst {
+  0% {
+    background-position: 130% 130%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  70% {
+    background-position: -30% -30%;
+    opacity: 1;
+  }
+  100% {
+    background-position: -30% -30%;
+    opacity: 0;
+  }
+}
+
+.generator-interactive:hover .generator-shine-sweep,
+.generator-shine-sweep-burst {
+  animation: generator-shine-burst 0.9s ease-out;
+}
+
 @keyframes generator-float {
   0%,
   100% {
@@ -514,6 +537,23 @@ body {
 
 .generator-ambient-glow {
   animation: generator-ambient-glow 4.2s ease-in-out infinite;
+}
+
+@keyframes generator-ambient-glow-active {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1.12);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.24);
+  }
+}
+
+.generator-interactive:hover .generator-ambient-glow,
+.generator-ambient-glow-active {
+  animation: generator-ambient-glow-active 1.3s ease-in-out infinite;
 }
 
 @keyframes login-card-in {
