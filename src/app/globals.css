@@ -486,6 +486,36 @@ body {
   animation: generator-shine-pan 9s ease-in-out infinite;
 }
 
+@keyframes generator-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.generator-float {
+  animation: generator-float 4.6s ease-in-out infinite;
+}
+
+@keyframes generator-ambient-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
+}
+
+.generator-ambient-glow {
+  animation: generator-ambient-glow 4.2s ease-in-out infinite;
+}
+
 @keyframes login-card-in {
   0% {
     opacity: 0;
