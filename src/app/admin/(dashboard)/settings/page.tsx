@@ -46,6 +46,27 @@ export default async function SettingsAdminPage() {
           </Field>
         </div>
 
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <Field label={`${t.legalNameLabel}${ukSuffix}`}>
+            <input name="legal_name" defaultValue={settings?.legal_name} className={inputClass} />
+          </Field>
+          <Field label={`${t.legalNameLabel}${enSuffix}`}>
+            <input name="legal_name_en" defaultValue={settings?.legal_name_en} className={inputClass} />
+          </Field>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <Field label={t.edrpouLabel}>
+            <input name="edrpou" defaultValue={settings?.edrpou} className={inputClass} />
+          </Field>
+          <Field label={`${t.mailingAddressLabel}${ukSuffix}`}>
+            <input name="mailing_address" defaultValue={settings?.mailing_address} className={inputClass} />
+          </Field>
+          <Field label={`${t.mailingAddressLabel}${enSuffix}`}>
+            <input name="mailing_address_en" defaultValue={settings?.mailing_address_en} className={inputClass} />
+          </Field>
+        </div>
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Field label={t.telegramLabel}>
             <input name="telegram_url" defaultValue={settings?.telegram_url} className={inputClass} />

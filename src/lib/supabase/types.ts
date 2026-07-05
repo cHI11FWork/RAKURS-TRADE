@@ -5,6 +5,11 @@ export type SiteSettings = {
   email: string;
   address: string;
   address_en: string;
+  legal_name: string;
+  legal_name_en: string;
+  edrpou: string;
+  mailing_address: string;
+  mailing_address_en: string;
   telegram_url: string;
   whatsapp_url: string;
   linkedin_url: string;

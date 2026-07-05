@@ -13,6 +13,8 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
   if (!settings) return null;
 
   const address = pick(settings.address, settings.address_en, locale);
+  const legalName = pick(settings.legal_name, settings.legal_name_en, locale);
+  const mailingAddress = pick(settings.mailing_address, settings.mailing_address_en, locale);
 
   return (
     <section id="contacts" className="bg-ink-soft py-20 lg:py-28">
@@ -96,6 +98,22 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
               </a>
             )}
           </div>
+
+          {(legalName || settings.edrpou || mailingAddress) && (
+            <div className="mt-8 space-y-1 border-t border-white/10 pt-6 text-sm leading-relaxed text-white/50">
+              {legalName && <p>{legalName}</p>}
+              {settings.edrpou && (
+                <p>
+                  {dict.site.contact.edrpouLabel} {settings.edrpou}
+                </p>
+              )}
+              {mailingAddress && (
+                <p>
+                  {dict.site.contact.mailingLabel} {mailingAddress}
+                </p>
+              )}
+            </div>
+          )}
         </div>
         </Reveal>
 
