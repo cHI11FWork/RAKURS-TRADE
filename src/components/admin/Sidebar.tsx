@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -57,9 +58,14 @@ export function Sidebar({
     <aside className="flex w-full shrink-0 flex-col border-b border-ink-border bg-ink-soft lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:overflow-y-auto lg:border-b-0 lg:border-r">
       <div className="px-5 py-4 lg:py-6">
         <div className="flex items-center justify-between gap-2">
-          <p className="font-heading text-sm font-extrabold tracking-wide text-white">
-            RAKURS <span className="text-brand">TRADE</span>
-          </p>
+          <Image
+            src="/images/logo-full-white.png"
+            alt="RAKURS TRADE"
+            width={1274}
+            height={355}
+            className="h-6 w-auto"
+            unoptimized
+          />
           <div className="flex items-center gap-3">
             <Link
               href="/admin/leads"

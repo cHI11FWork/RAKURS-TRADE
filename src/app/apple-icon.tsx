@@ -6,9 +6,9 @@ export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 export default function AppleIcon() {
-  const boltPath = join(process.cwd(), "public", "images", "logo-bolt.png");
-  const boltBase64 = readFileSync(boltPath).toString("base64");
-  const boltSrc = `data:image/png;base64,${boltBase64}`;
+  const markPath = join(process.cwd(), "public", "images", "logo-r-mark-white.png");
+  const markBase64 = readFileSync(markPath).toString("base64");
+  const markSrc = `data:image/png;base64,${markBase64}`;
 
   return new ImageResponse(
     (
@@ -23,7 +23,7 @@ export default function AppleIcon() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={boltSrc} width={120} height={145} alt="" />
+        <img src={markSrc} width={101} height={145} alt="" />
       </div>
     ),
     { ...size }
