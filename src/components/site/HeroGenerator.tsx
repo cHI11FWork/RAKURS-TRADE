@@ -8,10 +8,10 @@ export function HeroGenerator() {
       <div className="generator-float relative">
         <div className="relative overflow-hidden">
           <Image
-            src="/images/hero-generator-v2.png"
+            src="/images/hero-generator-v3.png"
             alt="Дизельний генератор"
-            width={1604}
-            height={1118}
+            width={1598}
+            height={1111}
             priority
             className="block w-full drop-shadow-[0_30px_40px_rgba(0,0,0,0.55)]"
           />
