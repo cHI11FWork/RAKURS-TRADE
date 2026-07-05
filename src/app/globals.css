@@ -523,39 +523,6 @@ body {
   animation: generator-float 4.6s ease-in-out infinite;
 }
 
-@keyframes generator-ambient-glow {
-  0%,
-  100% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.08);
-  }
-}
-
-.generator-ambient-glow {
-  animation: generator-ambient-glow 4.2s ease-in-out infinite;
-}
-
-@keyframes generator-ambient-glow-active {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(1.12);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.24);
-  }
-}
-
-.generator-interactive:hover .generator-ambient-glow,
-.generator-ambient-glow-active {
-  animation: generator-ambient-glow-active 1.3s ease-in-out infinite;
-}
-
 @keyframes login-card-in {
   0% {
     opacity: 0;
