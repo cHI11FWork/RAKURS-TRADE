@@ -9,12 +9,14 @@ export async function updateSiteSettings(formData: FormData) {
     .from("site_settings")
     .update({
       phone: String(formData.get("phone") ?? ""),
+      phone_2: String(formData.get("phone_2") ?? ""),
       email: String(formData.get("email") ?? ""),
       address: String(formData.get("address") ?? ""),
       address_en: String(formData.get("address_en") ?? ""),
       telegram_url: String(formData.get("telegram_url") ?? ""),
       whatsapp_url: String(formData.get("whatsapp_url") ?? ""),
       linkedin_url: String(formData.get("linkedin_url") ?? ""),
+      instagram_url: String(formData.get("instagram_url") ?? ""),
       footer_note_1: String(formData.get("footer_note_1") ?? ""),
       footer_note_1_en: String(formData.get("footer_note_1_en") ?? ""),
       footer_note_2: String(formData.get("footer_note_2") ?? ""),

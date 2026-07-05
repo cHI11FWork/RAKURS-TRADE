@@ -2,7 +2,7 @@
 
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
 import type { SiteSettings } from "@/lib/supabase/types";
-import { LinkedinIcon } from "@/lib/icons";
+import { LinkedinIcon, InstagramIcon } from "@/lib/icons";
 import { ContactForm } from "./ContactForm";
 import { Reveal } from "./Reveal";
 import { useLocale } from "@/lib/i18n/LocaleContext";
@@ -28,6 +28,12 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
               <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 text-white/80 hover:text-brand">
                 <Phone className="h-5 w-5 text-brand" />
                 {settings.phone}
+              </a>
+            )}
+            {settings.phone_2 && (
+              <a href={`tel:${settings.phone_2.replace(/\s/g, "")}`} className="flex items-center gap-3 text-white/80 hover:text-brand">
+                <Phone className="h-5 w-5 text-brand" />
+                {settings.phone_2}
               </a>
             )}
             {settings.email && (
@@ -76,6 +82,17 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
                 className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
               >
                 <LinkedinIcon className="h-5 w-5" />
+              </a>
+            )}
+            {settings.instagram_url && (
+              <a
+                href={settings.instagram_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={dict.site.contact.instagramAria}
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
+              >
+                <InstagramIcon className="h-5 w-5" />
               </a>
             )}
           </div>

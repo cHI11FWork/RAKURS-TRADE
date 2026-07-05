@@ -1,12 +1,14 @@
 export type SiteSettings = {
   id: number;
   phone: string;
+  phone_2: string;
   email: string;
   address: string;
   address_en: string;
   telegram_url: string;
   whatsapp_url: string;
   linkedin_url: string;
+  instagram_url: string;
   footer_note_1: string;
   footer_note_1_en: string;
   footer_note_2: string;

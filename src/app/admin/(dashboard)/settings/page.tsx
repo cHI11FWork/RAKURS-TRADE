@@ -25,9 +25,12 @@ export default async function SettingsAdminPage() {
         action={updateSiteSettings}
         className="admin-card-hover space-y-4 rounded-none border border-ink-border bg-ink-card p-6"
       >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <Field label={t.phoneLabel}>
             <input name="phone" defaultValue={settings?.phone} className={inputClass} />
+          </Field>
+          <Field label={t.phone2Label}>
+            <input name="phone_2" defaultValue={settings?.phone_2} className={inputClass} />
           </Field>
           <Field label={t.emailLabel}>
             <input name="email" defaultValue={settings?.email} className={inputClass} />
@@ -43,7 +46,7 @@ export default async function SettingsAdminPage() {
           </Field>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Field label={t.telegramLabel}>
             <input name="telegram_url" defaultValue={settings?.telegram_url} className={inputClass} />
           </Field>
@@ -52,6 +55,9 @@ export default async function SettingsAdminPage() {
           </Field>
           <Field label={t.linkedinLabel}>
             <input name="linkedin_url" defaultValue={settings?.linkedin_url} className={inputClass} />
+          </Field>
+          <Field label={t.instagramLabel}>
+            <input name="instagram_url" defaultValue={settings?.instagram_url} className={inputClass} />
           </Field>
         </div>
 
