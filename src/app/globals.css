@@ -193,6 +193,137 @@ body {
   }
 }
 
+/* Logo mark: ambient "energy" cycle — slow breathing glow, then a
+   double-flash discharge near the end of each cycle. Mirrors the old
+   bolt-icon animation, now applied to the full wordmark. */
+@keyframes logo-mark-energy {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 2px rgba(245, 179, 1, 0.35)) drop-shadow(0 0 6px rgba(245, 179, 1, 0.15))
+      brightness(1);
+  }
+  45% {
+    filter: drop-shadow(0 0 5px rgba(245, 179, 1, 0.6)) drop-shadow(0 0 14px rgba(245, 179, 1, 0.28))
+      brightness(1.04);
+  }
+  86% {
+    filter: drop-shadow(0 0 3px rgba(245, 179, 1, 0.4)) drop-shadow(0 0 8px rgba(245, 179, 1, 0.2)) brightness(1);
+  }
+  89% {
+    filter: drop-shadow(0 0 11px rgba(245, 179, 1, 0.95)) drop-shadow(0 0 24px rgba(245, 179, 1, 0.55))
+      brightness(1.9);
+  }
+  91% {
+    filter: drop-shadow(0 0 3px rgba(245, 179, 1, 0.3)) drop-shadow(0 0 6px rgba(245, 179, 1, 0.15)) brightness(1);
+  }
+  93% {
+    filter: drop-shadow(0 0 9px rgba(245, 179, 1, 0.85)) drop-shadow(0 0 18px rgba(245, 179, 1, 0.45))
+      brightness(1.65);
+  }
+  95% {
+    filter: drop-shadow(0 0 2px rgba(245, 179, 1, 0.35)) drop-shadow(0 0 6px rgba(245, 179, 1, 0.15)) brightness(1);
+  }
+}
+
+@keyframes logo-mark-strike {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(245, 179, 1, 0.35)) drop-shadow(0 0 6px rgba(245, 179, 1, 0.15)) brightness(1)
+      saturate(1);
+  }
+  30% {
+    filter: drop-shadow(0 0 14px rgba(205, 232, 255, 1)) drop-shadow(0 0 32px rgba(110, 180, 255, 0.8))
+      brightness(2.3) saturate(0.2);
+  }
+  55% {
+    filter: drop-shadow(0 0 4px rgba(245, 179, 1, 0.4)) brightness(1.05) saturate(1);
+  }
+  75% {
+    filter: drop-shadow(0 0 9px rgba(245, 179, 1, 0.85)) drop-shadow(0 0 18px rgba(245, 179, 1, 0.4))
+      brightness(1.6) saturate(1);
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(245, 179, 1, 0.35)) drop-shadow(0 0 6px rgba(245, 179, 1, 0.15)) brightness(1)
+      saturate(1);
+  }
+}
+
+.logo-mark-img {
+  animation: logo-mark-energy 6s ease-in-out infinite;
+}
+
+.group:hover .logo-mark-img {
+  animation: logo-mark-strike 0.7s ease-out;
+}
+
+/* Shine sweep masked to the logo's real silhouette (the logo PNG itself is
+   the mask), so the highlight travels exactly along the client's actual
+   artwork — no guessed shape. */
+.logo-mark-shine {
+  background: linear-gradient(
+    115deg,
+    transparent 34%,
+    rgba(255, 255, 255, 0.95) 48%,
+    rgba(245, 179, 1, 0.85) 54%,
+    transparent 68%
+  );
+  background-size: 260% 260%;
+  background-position: 140% 140%;
+  -webkit-mask-image: url(/images/logo-full-white.png);
+  mask-image: url(/images/logo-full-white.png);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: logo-mark-shine-ambient 6s ease-in-out infinite;
+}
+
+@keyframes logo-mark-shine-ambient {
+  0%,
+  85% {
+    background-position: 140% 140%;
+    opacity: 0;
+  }
+  89% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    background-position: -40% -40%;
+    opacity: 0;
+  }
+}
+
+@keyframes logo-mark-shine-strike {
+  0% {
+    background-position: 140% 140%;
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    background-position: -40% -40%;
+    opacity: 0;
+  }
+}
+
+.group:hover .logo-mark-shine {
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.98) 45%,
+    rgba(160, 210, 255, 0.95) 51%,
+    rgba(90, 170, 255, 0.6) 57%,
+    transparent 70%
+  );
+  background-size: 260% 260%;
+  animation: logo-mark-shine-strike 0.7s ease-out;
+}
+
 /* Hero generator illustration: idle "running" life — breathing vent glow,
    a status LED blink, rising heat-shimmer wisps, and an ambient sheen pass. */
 @keyframes generator-vent-glow {
