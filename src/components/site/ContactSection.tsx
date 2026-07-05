@@ -2,7 +2,7 @@
 
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
 import type { SiteSettings } from "@/lib/supabase/types";
-import { LinkedinIcon, InstagramIcon } from "@/lib/icons";
+import { InstagramIcon } from "@/lib/icons";
 import { ContactForm } from "./ContactForm";
 import { Reveal } from "./Reveal";
 import { useLocale } from "@/lib/i18n/LocaleContext";
@@ -62,28 +62,6 @@ export function ContactSection({ settings }: { settings: SiteSettings | null }) 
                 className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
               >
                 <Send className="h-5 w-5" />
-              </a>
-            )}
-            {settings.whatsapp_url && (
-              <a
-                href={settings.whatsapp_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={dict.site.contact.whatsappAria}
-                className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
-            )}
-            {settings.linkedin_url && (
-              <a
-                href={settings.linkedin_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={dict.site.contact.linkedinAria}
-                className="flex h-11 w-11 items-center justify-center rounded-none border border-ink-border text-white/70 transition-colors hover:border-brand hover:text-brand"
-              >
-                <LinkedinIcon className="h-5 w-5" />
               </a>
             )}
             {settings.instagram_url && (
