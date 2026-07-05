@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { dictionaries } from "@/lib/i18n/dictionary";
 import { isLocale } from "@/lib/i18n/locale";
+import { sendTelegramLeadNotification } from "@/lib/telegram";
 
 export type LeadFormState = {
   status: "idle" | "success" | "error";
@@ -39,6 +40,8 @@ export async function submitLead(
   if (error) {
     return { status: "error", message: dict.errorFailed };
   }
+
+  await sendTelegramLeadNotification({ name, phone, company: company || null, email: email || null, message });
 
   return { status: "success", message: dict.success };
 }
