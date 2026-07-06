@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 960" fill="none">
+  <defs>
+    <radialGradient id="glowDefense" cx="50%" cy="70%" r="45%">
+      <stop offset="0%" stop-color="#f5b301" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#f5b301" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bgDefense" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#131720"/>
+      <stop offset="100%" stop-color="#0a0b10"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="960" fill="url(#bgDefense)"/>
+  <ellipse cx="400" cy="700" rx="340" ry="220" fill="url(#glowDefense)"/>
+
+  <!-- radar sweep arcs, background -->
+  <g stroke="#e7e8ec" stroke-opacity="0.22" stroke-width="3" fill="none">
+    <circle cx="560" cy="330" r="60"/>
+    <circle cx="560" cy="330" r="100"/>
+    <circle cx="560" cy="330" r="140"/>
+  </g>
+  <!-- antenna mast -->
+  <g stroke="#eef0f4" stroke-opacity="0.85" stroke-width="6" stroke-linecap="round">
+    <line x1="560" y1="330" x2="560" y2="520"/>
+    <line x1="600" y1="230" x2="520" y2="280"/>
+    <line x1="600" y1="280" x2="520" y2="230"/>
+    <circle cx="560" cy="255" r="14" fill="none"/>
+  </g>
+  <path d="M560 200 q40 20 40 60" stroke="#f5b301" stroke-opacity="0.6" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M560 175 q65 30 65 85" stroke="#f5b301" stroke-opacity="0.4" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- shield -->
+  <g stroke="#eef0f4" stroke-opacity="0.92" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M290 400 L430 440 L430 600 Q430 720 290 780 Q150 720 150 600 L150 440 Z"/>
+  </g>
+
+  <!-- crosshair inside shield, accent -->
+  <g stroke="#f5b301" stroke-width="6" stroke-linecap="round">
+    <circle cx="290" cy="580" r="70" fill="none"/>
+    <circle cx="290" cy="580" r="30" fill="none"/>
+    <line x1="290" y1="480" x2="290" y2="530"/>
+    <line x1="290" y1="630" x2="290" y2="680"/>
+    <line x1="190" y1="580" x2="240" y2="580"/>
+    <line x1="340" y1="580" x2="390" y2="580"/>
+  </g>
+
+  <!-- armored vehicle silhouette, base -->
+  <g stroke="#e7e8ec" stroke-opacity="0.3" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M470 780 L470 730 Q470 710 490 710 L640 710 Q660 710 660 730 L660 780 Z"/>
+    <circle cx="505" cy="795" r="20"/>
+    <circle cx="620" cy="795" r="20"/>
+    <line x1="500" y1="710" x2="520" y2="670" />
+    <line x1="520" y1="670" x2="600" y2="670"/>
+    <line x1="600" y1="670" x2="620" y2="710"/>
+  </g>
+</svg>
