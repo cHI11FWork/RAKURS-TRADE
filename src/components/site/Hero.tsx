@@ -24,7 +24,7 @@ export function Hero({ hero, features }: { hero: HeroType | null; features: Hero
       <div className="container-page">
         <div className="max-w-3xl">
           <Reveal y={18}>
-            <h1 className="break-words font-heading text-2xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="break-words font-heading text-xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
               {titleMain}
               <span className="text-brand">{titleHighlight}</span>
             </h1>
