@@ -8,21 +8,20 @@ import { useLocale } from "@/lib/i18n/LocaleContext";
 import { pick } from "@/lib/i18n/localize";
 
 const DEFAULT_DIRECTION_IMAGES: Record<string, string> = {
-  bolt: "/images/direction-power.svg",
-  "shield-lightning": "/images/direction-lightning.svg",
-  crosshair: "/images/direction-defense.svg",
+  bolt: "/images/direction-power.jpg",
+  "shield-lightning": "/images/direction-lightning.jpg",
+  crosshair: "/images/direction-defense.jpg",
 };
 
 export function DirectionCard({ direction }: { direction: DirectionWithItems }) {
   const { locale } = useLocale();
   const imageSrc = direction.image_url ?? DEFAULT_DIRECTION_IMAGES[direction.icon] ?? null;
-  const isSvg = imageSrc?.endsWith(".svg") ?? false;
   const title = pick(direction.title, direction.title_en, locale);
   const buttonText = pick(direction.button_text, direction.button_text_en, locale);
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-none border border-ink-border transition-transform duration-300 ease-out hover:-translate-y-2 hover:scale-[1.015] ${
+      className={`group relative flex h-full flex-col overflow-hidden rounded-none border border-ink-border transition-transform duration-300 ease-out hover:-translate-y-2 hover:scale-[1.015] ${
         direction.enable_lightning_effect ? "lightning-card" : ""
       }`}
       tabIndex={direction.enable_lightning_effect ? 0 : undefined}
@@ -33,7 +32,8 @@ export function DirectionCard({ direction }: { direction: DirectionWithItems }) 
             src={imageSrc}
             alt={title}
             fill
-            unoptimized={isSvg}
+            quality={100}
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             className={`object-cover opacity-90 transition-transform duration-500 ease-out group-hover:scale-105 ${
               direction.enable_lightning_effect ? "lightning-photo" : ""
             }`}
