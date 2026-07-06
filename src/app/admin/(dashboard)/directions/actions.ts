@@ -20,7 +20,7 @@ export async function addDirection() {
 
   await supabase.from("directions").insert({
     icon: "bolt",
-    title: "Новий напрям",
+    title: "Новий напрямок",
     button_text: "Обговорити проєкт",
     button_link: "#contacts",
     sort_order: nextOrder,

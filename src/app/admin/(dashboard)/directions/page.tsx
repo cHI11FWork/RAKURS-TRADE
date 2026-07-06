@@ -22,7 +22,7 @@ import {
   updateDirectionItem,
 } from "./actions";
 
-export const metadata = { title: "Наші напрями — RAKURS TRADE" };
+export const metadata = { title: "Наші напрямки — RAKURS TRADE" };
 
 export default async function DirectionsAdminPage() {
   const [directions, locale] = await Promise.all([getDirectionsAdmin(), getServerLocale()]);
