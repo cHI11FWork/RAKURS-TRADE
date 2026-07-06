@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { HeroLights } from "./HeroLights";
 
-const DEFAULT_HERO_IMAGE = "/images/hero-industrial-night.jpg";
+const DEFAULT_HERO_IMAGE = "/images/hero-refinery.png";
 
 export function HeroScene({ backgroundImageUrl }: { backgroundImageUrl: string | null }) {
   return (
