@@ -48,6 +48,27 @@ export function ContactForm() {
         className="w-full resize-none rounded-none border border-ink-border bg-ink-soft px-4 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-brand"
       />
 
+      <label className="flex items-start gap-2.5 text-sm text-white/60">
+        <input
+          type="checkbox"
+          name="consent"
+          required
+          className="mt-0.5 h-4 w-4 shrink-0 rounded-none border-ink-border bg-ink-soft accent-brand"
+        />
+        <span>
+          {dict.site.contact.consentPrefix}
+          <a
+            href="/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-white/40 underline-offset-2 hover:text-brand"
+          >
+            {dict.site.contact.consentLinkText}
+          </a>
+          {dict.site.contact.consentSuffix}
+        </span>
+      </label>
+
       <button
         type="submit"
         disabled={pending}

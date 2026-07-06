@@ -4,6 +4,8 @@ type LeadNotification = {
   company: string | null;
   email: string | null;
   message: string;
+  leadNumber: number | null;
+  submittedAt: Date;
 };
 
 const TELEGRAM_MESSAGE_LIMIT = 4096;
@@ -26,8 +28,19 @@ export async function sendTelegramLeadNotification(lead: LeadNotification) {
     return;
   }
 
+  const submittedAtText = new Intl.DateTimeFormat("uk-UA", {
+    timeZone: "Europe/Kyiv",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(lead.submittedAt);
+
   const header = [
     "🔔 <b>Нова заявка з сайту RAKURS TRADE</b>",
+    ...(lead.leadNumber ? [`🆔 Заявка №${lead.leadNumber}`] : []),
+    `🕒 Дата: ${submittedAtText}`,
     `👤 Ім'я: ${escapeHtml(lead.name)}`,
     `📞 Телефон: ${escapeHtml(lead.phone)}`,
     ...(lead.company ? [`🏢 Компанія: ${escapeHtml(lead.company)}`] : []),

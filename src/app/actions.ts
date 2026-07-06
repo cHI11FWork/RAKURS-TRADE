@@ -23,25 +23,38 @@ export async function submitLead(
   const company = String(formData.get("company") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
+  const consent = formData.get("consent") === "on";
 
   if (!name || !phone || !message) {
     return { status: "error", message: dict.errorRequired };
   }
 
+  if (!consent) {
+    return { status: "error", message: dict.errorConsent };
+  }
+
   const supabase = await createClient();
-  const { error } = await supabase.from("leads").insert({
-    name,
-    phone,
-    company: company || null,
-    email: email || null,
-    message,
+  const { data: leadNumber, error } = await supabase.rpc("submit_lead", {
+    p_name: name,
+    p_phone: phone,
+    p_company: company || null,
+    p_email: email || null,
+    p_message: message,
   });
 
   if (error) {
     return { status: "error", message: dict.errorFailed };
   }
 
-  await sendTelegramLeadNotification({ name, phone, company: company || null, email: email || null, message });
+  await sendTelegramLeadNotification({
+    name,
+    phone,
+    company: company || null,
+    email: email || null,
+    message,
+    leadNumber: typeof leadNumber === "number" ? leadNumber : null,
+    submittedAt: new Date(),
+  });
 
   return { status: "success", message: dict.success };
 }
