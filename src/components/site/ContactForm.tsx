@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { Send } from "lucide-react";
+import { Check, Send } from "lucide-react";
 import { submitLead, type LeadFormState } from "@/app/actions";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 
@@ -49,12 +49,15 @@ export function ContactForm() {
       />
 
       <label className="flex items-start gap-2.5 text-sm text-white/60">
-        <input
-          type="checkbox"
-          name="consent"
-          required
-          className="mt-0.5 h-4 w-4 shrink-0 rounded-none border-ink-border bg-ink-soft accent-brand"
-        />
+        <span className="relative mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center">
+          <input
+            type="checkbox"
+            name="consent"
+            required
+            className="peer h-4 w-4 shrink-0 appearance-none rounded-none border border-ink-border bg-ink-soft checked:border-brand checked:bg-brand"
+          />
+          <Check className="pointer-events-none absolute h-3 w-3 text-ink opacity-0 peer-checked:opacity-100" />
+        </span>
         <span>
           {dict.site.contact.consentPrefix}
           <a
