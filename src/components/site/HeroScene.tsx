@@ -11,6 +11,8 @@ export function HeroScene({ backgroundImageUrl }: { backgroundImageUrl: string |
         alt=""
         fill
         priority
+        quality={100}
+        sizes="100vw"
         className="hero-photo object-cover"
       />
 
